@@ -1,7 +1,6 @@
-@import "tailwindcss";
-
-body {
-  margin: 0;
-  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
+@import "./design-system/fonts.css";
+@import "./design-system/colors.css";
+@import "./design-system/typography.css";
+@import "./design-system/spacing.css";
+@import "./design-system/base.css";
+@import "./design-system/layout.css";

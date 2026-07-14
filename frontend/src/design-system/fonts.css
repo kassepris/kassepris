@@ -1,0 +1,5 @@
+/* Kassepris — Webfonts
+   No source brand/fonts existed prior to this system, so these are Google
+   Fonts loaded via CDN import rather than copied binaries. */
+
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@500;600;700;800&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap");
