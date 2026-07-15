@@ -3,7 +3,8 @@
    fixed-dimension product cards. */
 import React from "react";
 import * as K from "./data.js";
-import logoName from "./assets/logo_name.png";
+import iconOnLight from "./assets/brand/icon-512-on-light.png";
+import iconOnDark from "./assets/brand/icon-512-on-dark.png";
 
 const WEEK = "Vecka 28";
 const MAXW = 1180;
@@ -70,8 +71,19 @@ function GoogleGlyph({ size = 18 }) {
 }
 
 // ───────────────────────── Primitives ─────────────────────────
-function Wordmark({ size = 25 }) {
-  return <img src={logoName} alt="Kassepris" style={{ height: size * 1.4, width: "auto", display: "block" }} />;
+// Logo — the brand icon (on-light for green tile, on-dark for the cream/reversed
+// tile) plus the wordmark. Always source the 512px export and let the browser
+// downscale it — sharper on retina displays than serving a small PNG close to
+// its native size.
+function Wordmark({ size = 25, mode = "light" }) {
+  const gap = Math.round(size * 0.28);
+  const wordSize = Math.round(size * 0.62);
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap }}>
+      <img src={mode === "dark" ? iconOnDark : iconOnLight} alt="" width={size} height={size} style={{ display: "block", flexShrink: 0 }} />
+      <span style={{ font: `800 ${wordSize}px/1 var(--font-display)`, color: mode === "dark" ? "var(--cream-050)" : "var(--green-800)", letterSpacing: "0.01em" }}>Kassepris</span>
+    </span>
+  );
 }
 
 function IconButton({ name, onClick, size = 22, color = "var(--text-primary)", surface = false, badge, ariaLabel }) {
@@ -326,7 +338,7 @@ function WebHeader({ active, onNav, onHome, onSearchSubmit, listCount, onProfile
     <header style={{ flexShrink: 0, background: "var(--bg-surface)", borderBottom: "1px solid var(--border-default)", position: "relative", zIndex: 12 }}>
       {/* desktop: logo · search · cubic icons */}
       <div className="kp-hd-row" style={{ maxWidth: MAXW, margin: "0 auto", padding: "0 24px", minHeight: 68, alignItems: "center", gap: 20 }}>
-        {logo(25)}
+        {logo(40)}
         <div className="kp-hd-search" style={{ flex: 1, maxWidth: 480, margin: "0 auto" }}><HeaderSearch onSearch={onSearchSubmit} /></div>
         {icons("d")}
       </div>
@@ -334,7 +346,7 @@ function WebHeader({ active, onNav, onHome, onSearchSubmit, listCount, onProfile
       {/* mobile: logo + icons row, then full-width search */}
       <div className="kp-hd-mobile">
         <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 14px 0" }}>
-          {logo(23)}
+          {logo(34)}
           <div style={{ marginLeft: "auto" }}>{icons("m")}</div>
         </div>
         <div style={{ padding: "11px 14px 12px" }}><HeaderSearch onSearch={onSearchSubmit} full /></div>
@@ -359,7 +371,7 @@ function Footer({ onNav, onHome, onProfile }) {
       <div style={{ maxWidth: MAXW, margin: "0 auto", padding: "44px 24px 26px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: "34px 24px" }}>
           <div style={{ minWidth: 0 }}>
-            <Wordmark size={24} color="var(--cream-050)" />
+            <Wordmark size={34} mode="dark" />
             <p style={{ font: "var(--text-body-sm)", color: "var(--cream-100)", margin: "12px 0 16px", maxWidth: 250, textWrap: "pretty" }}>Veckans bästa matpriser från ICA, Coop och Willys – samlade på ett ställe.</p>
             <div style={{ display: "flex", gap: 10 }}>
               {soc("instagram", "https://instagram.com", "Instagram")}
