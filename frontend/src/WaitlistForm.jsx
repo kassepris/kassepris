@@ -25,20 +25,18 @@ export function WaitlistForm({ size = "lg", showTerms = true }) {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
-      <form onSubmit={handleSubmit} style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ minWidth: 240 }}>
-          <Input
-            size={size}
-            type="email"
-            placeholder="Din e-postadress"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            icon={<Icon name="mail" size={18} color="var(--text-secondary)" />}
-          />
-        </div>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, width: "100%", maxWidth: 420 }}>
+      <form onSubmit={handleSubmit} className="kp-waitlist-form">
+        <Input
+          size={size}
+          type="email"
+          placeholder="Din e-postadress"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          icon={<Icon name="mail" size={18} color="var(--text-secondary)" />}
+        />
         <Button type="submit" variant="accent" size={size}>
-          <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>Gå med i väntelistan <Icon name="arrow" size={18} /></span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, justifyContent: "center" }}>Gå med i väntelistan <Icon name="arrow" size={18} /></span>
         </Button>
       </form>
       {showTerms ? (

@@ -37,6 +37,23 @@
   box-shadow: var(--shadow-card);
 }
 
+/* Mobile-first waitlist form: stacked + full-width by default, side-by-side once there's room. */
+.kp-waitlist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.kp-waitlist-form .kp-input { width: 100%; }
+.kp-waitlist-form button { width: 100%; }
+.kp-waitlist-form button > span { justify-content: center; }
+
+@media (min-width: 480px) {
+  .kp-waitlist-form { flex-direction: row; align-items: stretch; }
+  .kp-waitlist-form .kp-input { flex: 1 1 auto; min-width: 0; width: auto; }
+  .kp-waitlist-form button { width: auto; flex-shrink: 0; }
+}
+
 .kp-footer-link {
   color: var(--cream-100);
   text-decoration: none;

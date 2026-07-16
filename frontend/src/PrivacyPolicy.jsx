@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
     <div style={{ minHeight: "100%", background: "var(--bg-page)" }}>
       <header style={{ position: "sticky", top: 0, zIndex: 8, background: "color-mix(in srgb, var(--bg-page) 88%, transparent)", backdropFilter: "blur(8px)", borderBottom: "1px solid var(--border-default)" }}>
         <div style={{ maxWidth: 760, margin: "0 auto", padding: "0 24px", height: 66, display: "flex", alignItems: "center" }}>
-          <a href="#/" aria-label="Till startsidan"><Wordmark size={32} /></a>
+          <a href="#/" aria-label="Till startsidan" style={{ display: "inline-flex", alignItems: "center", height: "100%" }}><Wordmark size={32} /></a>
         </div>
       </header>
 

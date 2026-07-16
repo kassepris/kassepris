@@ -20,8 +20,21 @@ function Step({ n, title, body }) {
 function ProPill() {
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: 6, alignSelf: "flex-start", background: "var(--brand-accent)", color: "var(--ink-900)", borderRadius: "var(--radius-pill)", padding: "5px 12px", font: "var(--text-label-caps)", letterSpacing: "var(--tracking-caps)", textTransform: "uppercase" }}>
-      <Icon name="sparkle" size={13} color="var(--ink-900)" /> Pro · Kommer snart
+      <Icon name="sparkle" size={13} color="var(--ink-900)" /> Pro
     </span>
+  );
+}
+
+function TrustRow() {
+  const items = ["Gratis att använda", "Inget kreditkort", "Avsluta när du vill"];
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "8px 18px" }}>
+      {items.map((t) => (
+        <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: 6, font: "var(--text-body-sm)", color: "var(--text-secondary)" }}>
+          <Icon name="check" size={15} color="var(--green-700)" /> {t}
+        </span>
+      ))}
+    </div>
   );
 }
 
@@ -81,10 +94,11 @@ export default function Landing() {
             Veckans bästa priser, på ett ställe.
           </h1>
           <p className="kp-fade-up kp-fade-up-3" style={{ font: "var(--text-body-lg)", color: "var(--text-secondary)", margin: 0, maxWidth: 520, textWrap: "pretty" }}>
-            Kassepris jämför veckans erbjudanden från ICA, Coop och Willys — utan att öppna tre appar eller bläddra i tre reklamblad. Vi bygger det just nu — gå med i väntelistan så hör vi av oss när det är dags.
+            Kassepris jämför veckans erbjudanden från ICA, Coop och Willys — utan att öppna tre appar eller bläddra i tre reklamblad. Gratis att använda. Vi bygger det just nu — gå med i väntelistan så hör vi av oss när det är dags.
           </p>
-          <div className="kp-fade-up kp-fade-up-4">
+          <div className="kp-fade-up kp-fade-up-4" style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
             <WaitlistForm />
+            <TrustRow />
           </div>
         </div>
       </section>
@@ -109,6 +123,9 @@ export default function Landing() {
               <p style={{ font: "var(--text-body-md)", color: "var(--cream-100)", margin: 0, textWrap: "pretty" }}>
                 Lägg in hela din lista, så delar vi upp den butik för butik där varorna är billigast – och räknar ut din totala besparing.
               </p>
+              <p style={{ font: "var(--text-body-sm)", color: "var(--cream-100)", margin: 0, textWrap: "pretty" }}>
+                Kassepris är och förblir gratis att använda för att jämföra priser — Smart inköpslista är en valfri Pro-funktion.
+              </p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {[["layers", "Hela listan optimerad automatiskt"], ["route", "Uppdelad per butik"], ["tag", "Din besparing svart på vitt"]].map(([ic, t]) => (
@@ -129,7 +146,7 @@ export default function Landing() {
                 <strong>De första 100</strong> som går med i väntelistan får <strong>1 månad Kassepris Pro gratis</strong> vid lansering.
               </p>
             </div>
-            <div style={{ flexShrink: 0 }}>
+            <div style={{ flex: "1 1 280px", maxWidth: 420 }}>
               <WaitlistForm size="md" showTerms={false} />
             </div>
           </div>
