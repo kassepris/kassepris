@@ -17,13 +17,15 @@ function Step({ n, title, body }) {
   );
 }
 
-function SoonPill() {
+function ProPill() {
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: 6, alignSelf: "flex-start", background: "var(--brand-accent)", color: "var(--ink-900)", borderRadius: "var(--radius-pill)", padding: "5px 12px", font: "var(--text-label-caps)", letterSpacing: "var(--tracking-caps)", textTransform: "uppercase" }}>
-      <Icon name="sparkle" size={13} color="var(--ink-900)" /> Kommer snart
+      <Icon name="sparkle" size={13} color="var(--ink-900)" /> Pro · Kommer snart
     </span>
   );
 }
+
+const CONTACT_EMAIL = "hej@kassepris.se";
 
 function Footer() {
   const soc = (name, href, aria) => (
@@ -31,6 +33,7 @@ function Footer() {
       <Icon name={name} size={19} color="var(--cream-050)" />
     </a>
   );
+  const footerLink = { font: "var(--text-body-sm)" };
   return (
     <footer style={{ background: "var(--green-900)", color: "var(--cream-050)" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px 26px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
@@ -46,8 +49,12 @@ function Footer() {
           {soc("tiktok", "https://tiktok.com", "TikTok")}
         </div>
       </div>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "18px 24px 26px", borderTop: "1px solid color-mix(in srgb, var(--cream-100) 18%, transparent)", font: "var(--text-mono-sm)", color: "color-mix(in srgb, var(--cream-100) 80%, transparent)" }}>
-        © 2026 Kassepris
+      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "18px 24px 26px", borderTop: "1px solid color-mix(in srgb, var(--cream-100) 18%, transparent)", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+        <span style={{ font: "var(--text-mono-sm)", color: "color-mix(in srgb, var(--cream-100) 80%, transparent)" }}>© 2026 Kassepris</span>
+        <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
+          <a href="#/integritetspolicy" className="kp-footer-link" style={footerLink}>Integritetspolicy</a>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="kp-footer-link" style={footerLink}>Kontakta oss</a>
+        </div>
       </div>
     </footer>
   );
@@ -65,7 +72,6 @@ export default function Landing() {
 
       {/* hero */}
       <section style={{ position: "relative", overflow: "hidden" }}>
-        <div className="kp-hero-bg" />
         <div className="kp-hero-dots" />
         <div style={{ position: "relative", maxWidth: 760, margin: "0 auto", padding: "72px 24px 40px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
           <span className="kp-fade-up kp-fade-up-1" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "var(--yellow-100)", color: "var(--green-800)", padding: "6px 13px", borderRadius: "var(--radius-pill)", font: "var(--text-label-sm)" }}>
@@ -93,23 +99,39 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* smart list teaser */}
+      {/* smart list teaser — pro feature, framed as a waitlist incentive */}
       <section style={{ maxWidth: 1100, margin: "0 auto", padding: "8px 24px" }}>
-        <div style={{ background: "var(--green-800)", borderRadius: "var(--radius-lg)", padding: "32px 28px", color: "var(--cream-050)", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <SoonPill />
-            <div style={{ font: "var(--text-h2)", color: "var(--cream-050)" }}>Smart inköpslista</div>
-            <p style={{ font: "var(--text-body-md)", color: "var(--cream-100)", margin: 0, textWrap: "pretty" }}>
-              Lägg in hela din lista, så delar vi upp den butik för butik där varorna är billigast – och räknar ut din totala besparing.
-            </p>
+        <div style={{ background: "var(--green-800)", borderRadius: "var(--radius-lg)", padding: "32px 28px", color: "var(--cream-050)", display: "flex", flexDirection: "column", gap: 26 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <ProPill />
+              <div style={{ font: "var(--text-h2)", color: "var(--cream-050)" }}>Smart inköpslista</div>
+              <p style={{ font: "var(--text-body-md)", color: "var(--cream-100)", margin: 0, textWrap: "pretty" }}>
+                Lägg in hela din lista, så delar vi upp den butik för butik där varorna är billigast – och räknar ut din totala besparing.
+              </p>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {[["layers", "Hela listan optimerad automatiskt"], ["route", "Uppdelad per butik"], ["tag", "Din besparing svart på vitt"]].map(([ic, t]) => (
+                <div key={t} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <span style={{ width: 34, height: 34, flexShrink: 0, borderRadius: "var(--radius-sm)", background: "color-mix(in srgb, var(--brand-accent) 20%, transparent)", display: "inline-flex", alignItems: "center", justifyContent: "center" }}><Icon name={ic} size={17} color="var(--brand-accent)" /></span>
+                  <span style={{ font: "var(--text-body-md)", color: "var(--cream-050)" }}>{t}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {[["layers", "Hela listan optimerad automatiskt"], ["route", "Uppdelad per butik"], ["tag", "Din besparing svart på vitt"]].map(([ic, t]) => (
-              <div key={t} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <span style={{ width: 34, height: 34, flexShrink: 0, borderRadius: "var(--radius-sm)", background: "color-mix(in srgb, var(--brand-accent) 20%, transparent)", display: "inline-flex", alignItems: "center", justifyContent: "center" }}><Icon name={ic} size={17} color="var(--brand-accent)" /></span>
-                <span style={{ font: "var(--text-body-md)", color: "var(--cream-050)" }}>{t}</span>
-              </div>
-            ))}
+
+          <div style={{ borderTop: "1px solid color-mix(in srgb, var(--cream-050) 18%, transparent)", paddingTop: 22, display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 18 }}>
+            <div style={{ display: "flex", alignItems: "flex-start", gap: 12, maxWidth: 420 }}>
+              <span style={{ width: 36, height: 36, flexShrink: 0, borderRadius: "var(--radius-sm)", background: "var(--brand-accent)", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+                <Icon name="gift" size={19} color="var(--ink-900)" />
+              </span>
+              <p style={{ font: "var(--text-body-md)", color: "var(--cream-050)", margin: 0, textWrap: "pretty" }}>
+                <strong>De första 100</strong> som går med i väntelistan får <strong>1 månad Kassepris Pro gratis</strong> vid lansering.
+              </p>
+            </div>
+            <div style={{ flexShrink: 0 }}>
+              <WaitlistForm size="md" showTerms={false} />
+            </div>
           </div>
         </div>
       </section>

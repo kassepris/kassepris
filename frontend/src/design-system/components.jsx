@@ -42,12 +42,13 @@ export function Button({ variant = "primary", size = "md", disabled = false, ico
   );
 }
 
-export function Input({ placeholder = "", value, onChange, icon = null, size = "md" }) {
+export function Input({ type = "text", placeholder = "", value, onChange, icon = null, size = "md" }) {
   const pad = size === "lg" ? "13px 16px" : "10px 14px";
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px", background: "var(--bg-surface)", border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", padding: pad }}>
+    <div className="kp-input" style={{ display: "flex", alignItems: "center", gap: "8px", background: "var(--bg-surface)", border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", padding: pad }}>
       {icon}
       <input
+        type={type}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
