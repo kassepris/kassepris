@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Claude design import archives (already extracted into public/brand & src/assets/brand)
+*.zip
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

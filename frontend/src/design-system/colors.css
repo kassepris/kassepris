@@ -1,0 +1,70 @@
+/* Kassepris — Color tokens
+   No source brand existed prior to this system; palette designed from scratch
+   for a neutral, trustworthy price-comparison product that sits ABOVE any
+   single grocery chain. Store accent colors are informational chips only —
+   not the retailers' official brand colors/marks. */
+
+:root {
+  /* ---- Base palette ---- */
+  --green-900: #142B22;
+  --green-800: #1B3A2F;
+  --green-700: #24503F;
+  --green-600: #2F6650;
+
+  --yellow-500: #FFC934; /* Prisgul — price-tag yellow */
+  --yellow-600: #F0B300;
+  --yellow-100: #FFF3D2;
+
+  --red-600: #E5472B; /* Rabatt — discount red */
+  --red-700: #C93A21;
+  --red-100: #FBE1DB;
+
+  --cream-050: #FBF7EF; /* paper background */
+  --cream-100: #F4EDDF;
+  --cream-200: #EAE0CB;
+
+  --ink-900: #20241F; /* near-black text */
+  --ink-700: #3E453E;
+  --ink-500: #6B7268;
+  --ink-300: #A6AB9F;
+  --ink-150: #D8D9CE;
+
+  --white: #FFFFFF;
+
+  /* ---- Store accent chips (informational, not brand marks) ---- */
+  --store-ica: #D8362A;
+  --store-ica-bg: #FBE2DF;
+  --store-coop: #0E7C63;
+  --store-coop-bg: #DCF0E7;
+  --store-willys: #D6296E;
+  --store-willys-bg: #FBE0EC;
+
+  /* ---- Semantic aliases ---- */
+  --bg-page: var(--cream-050);
+  --bg-surface: var(--white);
+  --bg-surface-sunken: var(--cream-100);
+  --bg-inverse: var(--green-800);
+
+  --text-primary: var(--ink-900);
+  --text-secondary: var(--ink-500);
+  --text-inverse: var(--cream-050);
+  --text-link: var(--green-700);
+  --text-link-hover: var(--green-800);
+
+  --brand-primary: var(--green-800);
+  --brand-primary-hover: var(--green-900);
+  --brand-accent: var(--yellow-500);
+  --brand-accent-hover: var(--yellow-600);
+
+  --deal-badge-bg: var(--red-600);
+  --deal-badge-bg-hover: var(--red-700);
+  --deal-badge-text: var(--white);
+
+  --price-best-bg: var(--yellow-500);
+  --price-best-text: var(--ink-900);
+
+  --border-default: var(--ink-150);
+  --border-strong: var(--ink-300);
+
+  --focus-ring: var(--green-700);
+}

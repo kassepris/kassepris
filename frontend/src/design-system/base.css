@@ -1,0 +1,23 @@
+/* Kassepris — global resets */
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font: var(--text-body-md);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: var(--font-body);
+}
+
+#root { height: 100vh; height: 100dvh; }
+
+a { color: var(--text-link); text-decoration: none; }
+a:hover { color: var(--text-link-hover); text-decoration: underline; }
+
+h1, h2, h3, h4, p { margin: 0; }
+
+button { font-family: var(--font-body); }
