@@ -1,0 +1,43 @@
+/* Kassepris — FAQ accordion */
+
+.kp-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.kp-faq-item {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  padding: 0 18px;
+}
+
+.kp-faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  font: 600 15px/1.4 var(--font-body);
+  color: var(--ink-900);
+  cursor: pointer;
+  list-style: none;
+}
+.kp-faq-question::-webkit-details-marker { display: none; }
+.kp-faq-question::marker { content: ""; }
+
+.kp-faq-chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  transition: transform 0.2s var(--ease-standard);
+}
+.kp-faq-item[open] .kp-faq-chevron { transform: rotate(180deg); }
+
+.kp-faq-answer {
+  font: var(--text-body-sm);
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+  max-width: 640px;
+  text-wrap: pretty;
+}

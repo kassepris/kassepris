@@ -25,18 +25,6 @@
 .kp-fade-up-3 { animation-delay: 0.21s; }
 .kp-fade-up-4 { animation-delay: 0.29s; }
 
-.kp-step-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-lg);
-  padding: 22px 20px;
-  transition: transform var(--duration-base) var(--ease-standard), box-shadow var(--duration-base) var(--ease-standard);
-}
-.kp-step-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-card);
-}
-
 /* Mobile-first waitlist form: stacked + full-width by default, side-by-side once there's room. */
 .kp-waitlist-form {
   display: flex;
@@ -65,5 +53,4 @@
 
 @media (prefers-reduced-motion: reduce) {
   .kp-fade-up { animation: none; opacity: 1; }
-  .kp-step-card:hover { transform: none; }
 }
