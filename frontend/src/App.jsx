@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import Clarity from "@microsoft/clarity";
 import Landing from "./Landing.jsx";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
 
@@ -18,6 +19,13 @@ export default function App() {
     };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+
+  useEffect(() => {
+    const clarityId = import.meta.env.VITE_CLARITY_ID;
+    if (clarityId) {
+      Clarity.init(clarityId);
+    }
   }, []);
 
   return (
