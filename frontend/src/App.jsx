@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Landing from "./Landing.jsx";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
 
@@ -18,5 +19,10 @@ export default function App() {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
-  return route === "privacy" ? <PrivacyPolicy /> : <Landing />;
+  return (
+    <>
+      {route === "privacy" ? <PrivacyPolicy /> : <Landing />}
+      <Analytics />
+    </>
+  );
 }
