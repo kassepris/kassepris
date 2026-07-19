@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Landing from "./Landing.jsx";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
 
@@ -23,6 +24,7 @@ export default function App() {
     <>
       {route === "privacy" ? <PrivacyPolicy /> : <Landing />}
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }
