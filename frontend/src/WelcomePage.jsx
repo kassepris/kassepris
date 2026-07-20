@@ -7,7 +7,7 @@ import { Wordmark } from "./Wordmark.jsx";
 import { WaitlistForm } from "./WaitlistForm.jsx";
 
 const SHARE_URL = "https://kassepris.se";
-const SHARE_TEXT = "Jag gick precis med i väntelistan för Kassepris – jämför veckans bästa matpriser från ICA, Coop och Willys på ett ställe.";
+const SHARE_TEXT = "Jag gick precis med i väntelistan för Kassepris, jämför veckans bästa matpriser från ICA, Coop och Willys på ett ställe.";
 
 const SOCIAL_LINKS = [
   ["instagram", "https://www.instagram.com/kassepris/", "Instagram"],
@@ -121,7 +121,7 @@ export function WelcomePage({ status }) {
                 {status === "verified" ? "Välkommen till Kassepris!" : "Du står redan på listan!"}
               </h1>
               <p style={{ font: "var(--text-body-lg)", color: "var(--text-secondary)", margin: 0, textWrap: "pretty" }}>
-                Din plats på väntelistan är säkrad. Vi hör av oss så snart Kassepris är redo — och som en
+                Din plats på väntelistan är säkrad. Vi hör av oss så snart Kassepris är redo, och som en
                 av de första 100 kan du få <strong>1 månad Kassepris Pro gratis</strong> vid lansering.
               </p>
             </div>

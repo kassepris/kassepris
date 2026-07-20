@@ -32,7 +32,7 @@ function Footer() {
         <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0 }}>
           <Wordmark size={28} mode="dark" />
           <p style={{ font: "var(--text-body-sm)", color: "var(--cream-100)", margin: 0, maxWidth: 320, textWrap: "pretty" }}>
-            Veckans bästa matpriser från ICA, Coop och Willys – snart samlade på ett ställe.
+            Veckans bästa matpriser från ICA, Coop och Willys, snart samlade på ett ställe.
           </p>
         </div>
         <div style={{ display: "flex", gap: 10 }}>
@@ -68,13 +68,13 @@ export default function Landing() {
         <div className="kp-hero-dots" />
         <div style={{ position: "relative", maxWidth: 760, margin: "0 auto", padding: "72px 24px 40px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
           <span className="kp-fade-up kp-fade-up-1" style={{ display: "inline-flex", alignItems: "center", gap: 7, background: "var(--yellow-100)", color: "var(--green-800)", padding: "6px 13px", borderRadius: "var(--radius-pill)", font: "var(--text-label-sm)" }}>
-            <Icon name="tag" size={14} color="var(--green-700)" /> ICA · Coop · Willys — fler kedjor snart
+            <Icon name="tag" size={14} color="var(--green-700)" /> ICA · Coop · Willys, fler kedjor snart
           </span>
           <h1 className="kp-fade-up kp-fade-up-2" style={{ font: "800 clamp(36px, 5vw, 52px)/1.08 var(--font-body)", color: "var(--ink-900)", margin: 0, letterSpacing: "-0.015em", textWrap: "balance" }}>
             Veckans bästa priser, på ett ställe.
           </h1>
           <p className="kp-fade-up kp-fade-up-3" style={{ font: "var(--text-body-lg)", color: "var(--text-secondary)", margin: 0, maxWidth: 520, textWrap: "pretty" }}>
-            Kassepris jämför veckans erbjudanden från ICA, Coop och Willys — utan att öppna tre appar eller bläddra i tre reklamblad. Gratis att använda. Vi bygger det just nu — gå med i väntelistan så hör vi av oss när det är dags.
+            Kassepris jämför veckans erbjudanden från ICA, Coop och Willys, utan att öppna tre appar eller bläddra i tre reklamblad. Gratis att använda. Vi bygger det just nu. Gå med i väntelistan så hör vi av oss när det är dags.
           </p>
           <div className="kp-fade-up kp-fade-up-4" style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
             <WaitlistForm />
@@ -108,10 +108,10 @@ export default function Landing() {
               <ProPill />
               <div style={{ font: "var(--text-h2)", color: "var(--cream-050)" }}>Smart inköpslista</div>
               <p style={{ font: "var(--text-body-md)", color: "var(--cream-100)", margin: 0, textWrap: "pretty" }}>
-                Låt Kassepris sätta ihop din billigaste inköpskorg – helt automatiskt.
+                Låt Kassepris sätta ihop din billigaste inköpskorg, helt automatiskt.
               </p>
               <p style={{ font: "var(--text-body-sm)", color: "var(--cream-100)", margin: 0, textWrap: "pretty" }}>
-                Kassepris är och förblir gratis att använda för att jämföra priser — Smart inköpslista är en valfri Pro-funktion.
+                Kassepris är och förblir gratis att använda för att jämföra priser. Smart inköpslista är en valfri Pro-funktion.
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
