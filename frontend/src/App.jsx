@@ -4,9 +4,13 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import Clarity from "@microsoft/clarity";
 import Landing from "./Landing.jsx";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
+import { WelcomePage } from "./WelcomePage.jsx";
 
 function routeFromHash() {
-  return window.location.hash === "#/integritetspolicy" ? "privacy" : "landing";
+  const [path, query] = window.location.hash.slice(1).split("?");
+  if (path === "/integritetspolicy") return { name: "privacy" };
+  if (path === "/valkommen") return { name: "welcome", status: new URLSearchParams(query || "").get("status") };
+  return { name: "landing" };
 }
 
 export default function App() {
@@ -30,7 +34,9 @@ export default function App() {
 
   return (
     <>
-      {route === "privacy" ? <PrivacyPolicy /> : <Landing />}
+      {route.name === "privacy" ? <PrivacyPolicy /> : null}
+      {route.name === "welcome" ? <WelcomePage status={route.status} /> : null}
+      {route.name === "landing" ? <Landing /> : null}
       <Analytics />
       <SpeedInsights />
     </>
