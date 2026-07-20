@@ -4,24 +4,21 @@
    deal cards. Coded illustrations, not screenshots or real flyer content. */
 import React from "react";
 import "./oldvsnew.css";
-import { Icon } from "./Icon.jsx";
+import { ProductDealCard } from "./ProductDealCard.jsx";
 
-function OldWayFlyer({ store, color, bg, rotate }) {
+function OldWayFlyer({ store, color, bg, price, sub, rotate }) {
   return (
     <div className="kp-ovn-flyer" style={{ "--flyer-rotate": `${rotate}deg` }}>
-      <div className="kp-ovn-flyer-header" style={{ background: bg, color }}>{store}</div>
-      <div className="kp-ovn-flyer-lines">
-        <span />
-        <span />
-        <span style={{ width: "58%" }} />
+      <div className="kp-ovn-flyer-header" style={{ background: color }}>
+        <span>{store}</span>
+        <span className="kp-ovn-flyer-week">V.29</span>
       </div>
-      <div className="kp-ovn-flyer-price">
-        <span className="kp-ovn-flyer-price-value">19<sup>90</sup></span>
+      <div className="kp-ovn-flyer-photo" style={{ background: bg }}>
+        <div className="kp-ovn-flyer-tag">
+          <span className="kp-ovn-flyer-tag-price">{price}<sup>90</sup></span>
+        </div>
       </div>
-      <div className="kp-ovn-flyer-lines">
-        <span style={{ width: "80%" }} />
-        <span style={{ width: "45%" }} />
-      </div>
+      <div className="kp-ovn-flyer-sub">{sub}</div>
     </div>
   );
 }
@@ -29,22 +26,9 @@ function OldWayFlyer({ store, color, bg, rotate }) {
 function OldWayVisual() {
   return (
     <div className="kp-ovn-visual kp-ovn-visual-old">
-      <OldWayFlyer store="ICA" color="var(--store-ica)" bg="var(--store-ica-bg)" rotate={-7} />
-      <OldWayFlyer store="Coop" color="var(--store-coop)" bg="var(--store-coop-bg)" rotate={4} />
-      <OldWayFlyer store="Willys" color="var(--store-willys)" bg="var(--store-willys-bg)" rotate={-2} />
-    </div>
-  );
-}
-
-function NewWayDeal({ name, store, storeColor, storeBg, price }) {
-  return (
-    <div className="kp-ovn-deal">
-      <div className="kp-ovn-deal-top" style={{ background: storeBg }}>
-        <Icon name="tag" size={16} color={storeColor} />
-        <span className="kp-ovn-deal-store" style={{ color: storeColor }}>{store}</span>
-      </div>
-      <div className="kp-ovn-deal-name">{name}</div>
-      <div className="kp-ovn-deal-price">{price}</div>
+      <OldWayFlyer store="ICA" color="var(--store-ica)" bg="var(--store-ica-bg)" price="19" sub="Bryggkaffe 450 g" rotate={-7} />
+      <OldWayFlyer store="Coop" color="var(--store-coop)" bg="var(--store-coop-bg)" price="24" sub="Ägg 12-pack" rotate={4} />
+      <OldWayFlyer store="Willys Lund" color="var(--store-willys)" bg="var(--store-willys-bg)" price="14" sub="Mellanmjölk 1 l" rotate={-2} />
     </div>
   );
 }
@@ -52,10 +36,24 @@ function NewWayDeal({ name, store, storeColor, storeBg, price }) {
 function NewWayVisual() {
   return (
     <div className="kp-ovn-visual kp-ovn-visual-new">
-      <NewWayDeal name="Mellanmjölk 1 l" store="ICA" storeColor="var(--store-ica)" storeBg="var(--store-ica-bg)" price="12,90 kr" />
-      <NewWayDeal name="Bryggkaffe 450 g" store="Willys" storeColor="var(--store-willys)" storeBg="var(--store-willys-bg)" price="34,90 kr" />
-      <NewWayDeal name="Ägg 12-pack" store="Coop" storeColor="var(--store-coop)" storeBg="var(--store-coop-bg)" price="29,90 kr" />
-      <NewWayDeal name="Bananer 1 kg" store="ICA" storeColor="var(--store-ica)" storeBg="var(--store-ica-bg)" price="14,90 kr" />
+      <ProductDealCard
+        icon="jar" tint="#F1E8D6" name="Gevalia Mellanrost" sub="Bryggkaffe · 450 g"
+        storeLabel="Willys Lund" storeColor="var(--store-willys)" storeBg="var(--store-willys-bg)"
+        price="49,90" unit="kr" was="74,90" discount="-33%"
+        others={[
+          { label: "ICA", color: "var(--store-ica)", bg: "var(--store-ica-bg)", price: "64,90" },
+          { label: "Coop", color: "var(--store-coop)", bg: "var(--store-coop-bg)", price: "69,90" },
+        ]}
+      />
+      <ProductDealCard
+        icon="milk" tint="#E7F1E8" name="Mellanmjölk" sub="Mejeri · 1 l"
+        storeLabel="ICA" storeColor="var(--store-ica)" storeBg="var(--store-ica-bg)"
+        price="12,90" unit="kr"
+        others={[
+          { label: "Coop", color: "var(--store-coop)", bg: "var(--store-coop-bg)", price: "14,90" },
+          { label: "Willys Lund", color: "var(--store-willys)", bg: "var(--store-willys-bg)", price: "15,90" },
+        ]}
+      />
     </div>
   );
 }

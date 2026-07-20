@@ -11,6 +11,8 @@ export function Icon({ name, size = 20, color = "currentColor", sw = 2, style })
     case "layers": return svg(<g {...p}><path d="M12 3l9 5-9 5-9-5z" /><path d="M3 13l9 5 9-5" /></g>);
     case "route": return svg(<g {...p}><circle cx="6" cy="6" r="2.4" /><circle cx="18" cy="18" r="2.4" /><path d="M8 6h6a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8" /></g>);
     case "mail": return svg(<g {...p}><rect x="3" y="5" width="18" height="14" rx="2.2" /><path d="M3.5 6.5l8.5 6.5 8.5-6.5" /></g>);
+    case "milk": return svg(<g {...p}><path d="M8 9V5.5L10 3h4l2 2.5V9" /><path d="M8 9h8v11a1.3 1.3 0 0 1-1.3 1.3H9.3A1.3 1.3 0 0 1 8 20V9z" /><path d="M8 13.5h8" /></g>);
+    case "jar": return svg(<g {...p}><rect x="7" y="8" width="10" height="12" rx="2" /><path d="M9 8V5.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1V8" /><path d="M7 12.5h10" /></g>);
     case "check": return svg(<path {...p} d="M5 12.5l4.5 4.5L19 7" />);
     case "search": return svg(<g {...p}><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" /></g>);
     case "filter": return svg(<path {...p} d="M4 5h16l-6 8v6l-4-2v-4z" />);
@@ -24,7 +26,7 @@ export function Icon({ name, size = 20, color = "currentColor", sw = 2, style })
     case "instagram": return svg(<g {...p}><rect x="4" y="4" width="16" height="16" rx="4.6" /><circle cx="12" cy="12" r="3.6" /><circle cx="16.6" cy="7.4" r="1" fill={color} stroke="none" /></g>);
     case "facebook": return svg(<path fill={color} stroke="none" d="M13.4 21v-7h2.3l.4-2.9h-2.7V9.2c0-.85.24-1.43 1.46-1.43H16.2V5.16c-.27-.03-1.2-.11-2.28-.11-2.26 0-3.8 1.38-3.8 3.9v2.18H7.8V14h2.32v7z" />);
     case "tiktok": return svg(<path fill={color} stroke="none" d="M14.2 3.5c.3 1.6 1.3 3 3.3 3.3v2.4c-1.1 0-2.2-.34-3.1-.94v5.9c0 2.7-2.1 4.84-4.8 4.84S4.8 16.9 4.8 14.2s2.2-4.84 4.9-4.72v2.45c-1.4-.1-2.55 1-2.55 2.37 0 1.35 1.05 2.44 2.4 2.44 1.36 0 2.45-1.05 2.45-2.5V3.5z" />);
-    case "linkedin": return svg(<g {...p}><rect x="4" y="4" width="16" height="16" rx="3" /><circle cx="8" cy="8.2" r="0.9" fill={color} stroke="none" /><path d="M8 11v6" /><path d="M11.3 17v-3.5c0-1.4.9-2.2 2-2.2s1.9.8 1.9 2.2V17" /></g>);
+    case "linkedin": return svg(<g {...p}><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><path d="M8 11v5" /><circle cx="8" cy="8" r="0.6" fill={color} stroke="none" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 0 0-4 0" /></g>);
     default: return svg(<circle {...p} cx="12" cy="12" r="8" />);
   }
 }

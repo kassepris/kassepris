@@ -71,77 +71,82 @@
 .kp-ovn-card-old .kp-ovn-dot { background: var(--red-600); }
 .kp-ovn-card-new .kp-ovn-dot { background: var(--green-700); }
 
-/* old way — stacked, skewed flyers */
+/* old way — stacked, skewed flyers, styled after a real Swedish grocery
+   flyer: bold store-color header, photo tile with a starburst price tag. */
 .kp-ovn-visual-old {
   display: flex;
   justify-content: center;
   gap: -14px;
 }
 .kp-ovn-flyer {
-  width: 92px;
+  width: 112px;
   background: var(--white);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-raised);
-  padding: 8px 8px 10px;
+  overflow: hidden;
+  padding-bottom: 8px;
   transform: rotate(var(--flyer-rotate, 0deg));
 }
-.kp-ovn-flyer + .kp-ovn-flyer { margin-left: -26px; }
+.kp-ovn-flyer + .kp-ovn-flyer { margin-left: -30px; }
 .kp-ovn-flyer-header {
-  font: 700 10px/1 var(--font-body);
-  text-align: center;
-  border-radius: var(--radius-sm);
-  padding: 4px 0;
-  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  font: 800 10.5px/1 var(--font-display);
+  color: var(--white);
+  padding: 6px 8px;
 }
-.kp-ovn-flyer-lines { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
-.kp-ovn-flyer-lines span {
-  display: block;
-  height: 3px;
-  border-radius: 2px;
-  background: var(--ink-150);
-  width: 100%;
+.kp-ovn-flyer-week {
+  font: 700 8px/1 var(--font-body);
+  opacity: 0.85;
 }
-.kp-ovn-flyer-price {
-  text-align: center;
-  font: 700 15px/1 var(--font-display);
-  color: var(--red-600);
-  margin: 4px 0;
+.kp-ovn-flyer-photo {
+  position: relative;
+  height: 62px;
+  display: flex;
+  align-items: flex-end;
+  padding: 6px;
 }
-.kp-ovn-flyer-price sup { font-size: 9px; }
+.kp-ovn-flyer-tag {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.kp-ovn-flyer-tag::before,
+.kp-ovn-flyer-tag::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--yellow-500);
+  border-radius: 5px;
+}
+.kp-ovn-flyer-tag::before { transform: rotate(18deg); }
+.kp-ovn-flyer-tag::after { transform: rotate(-18deg); }
+.kp-ovn-flyer-tag-price {
+  position: relative;
+  z-index: 1;
+  font: 800 13px/1 var(--font-display);
+  color: var(--ink-900);
+}
+.kp-ovn-flyer-tag-price sup { font-size: 8px; }
+.kp-ovn-flyer-sub {
+  font: 600 9.5px/1.3 var(--font-body);
+  color: var(--ink-700);
+  padding: 7px 8px 0;
+}
 
-/* new way — clean grid of app deal cards */
+/* new way — clean grid of real app deal cards */
 .kp-ovn-visual-new {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 10px;
   width: 100%;
-  max-width: 260px;
-}
-.kp-ovn-deal {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-raised);
-  overflow: hidden;
-}
-.kp-ovn-deal-top {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 6px 8px;
-}
-.kp-ovn-deal-store { font: 700 10px/1 var(--font-body); }
-.kp-ovn-deal-name {
-  font: 600 11px/1.3 var(--font-body);
-  color: var(--ink-900);
-  padding: 6px 8px 2px;
-}
-.kp-ovn-deal-price {
-  font: var(--text-display-sm);
-  font-size: 13px;
-  color: var(--green-800);
-  padding: 0 8px 8px;
+  max-width: 320px;
 }
 
 @media (max-width: 720px) {
