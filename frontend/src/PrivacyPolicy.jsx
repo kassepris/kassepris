@@ -3,7 +3,7 @@ import React from "react";
 import { Icon } from "./Icon.jsx";
 import { Wordmark } from "./Wordmark.jsx";
 
-const CONTACT_EMAIL = "hej@kassepris.se";
+const CONTACT_EMAIL = "contact@kassepris.se";
 
 function Section({ title, children }) {
   return (
@@ -43,7 +43,7 @@ export default function PrivacyPolicy() {
         </Section>
 
         <Section title="Hur vi använder din e-postadress">
-          <p>Din e-postadress används uteslutande för att skicka information om lanseringen av Kassepris, inklusive bekräftelsemejlet, eventuell tidig tillgång eller erbjudanden kopplade till väntelistan (till exempel en gratis månad för de första 100 som går med).</p>
+          <p>Din e-postadress används uteslutande för att skicka information om lanseringen av Kassepris, inklusive bekräftelsemejlet, eventuell tidig tillgång eller exklusiva lanseringsförmåner för tidiga supportrar.</p>
           <p>Vi säljer, hyr ut eller delar aldrig din e-postadress med tredje part i marknadsföringssyfte.</p>
         </Section>
 

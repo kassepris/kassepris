@@ -4,7 +4,7 @@ import "./benefits.css";
 import { Icon } from "./Icon.jsx";
 
 const BENEFITS = [
-  { icon: "tag", title: "Rean är inte alltid bäst i stan", body: "Ett erbjudande kan se billigt ut i reklambladet, men ändå vara dyrare än ordinarie pris i en annan butik. Vi jämför alltid mot alla priser, inte bara mot veckans reor." },
+  { icon: "pin", title: "Välj exakt dina butiker", body: "Se erbjudanden bara från butikerna du faktiskt handlar i, alla samlade på samma ställe." },
   { icon: "clock", title: "Spara tid varje vecka", body: "Ett ställe istället för tre appar eller reklamblad att bläddra i." },
   { icon: "wallet", title: "Alltid gratis att jämföra", body: "Ingen kostnad för att se och jämföra priser, nu och i framtiden." },
 ];

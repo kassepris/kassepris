@@ -9,14 +9,6 @@ import { OldVsNew } from "./OldVsNew.jsx";
 import { Benefits } from "./Benefits.jsx";
 import { Faq } from "./Faq.jsx";
 
-function ProPill() {
-  return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 6, alignSelf: "flex-start", background: "var(--brand-accent)", color: "var(--ink-900)", borderRadius: "var(--radius-pill)", padding: "5px 12px", font: "var(--text-label-caps)", letterSpacing: "var(--tracking-caps)", textTransform: "uppercase" }}>
-      <Icon name="sparkle" size={13} color="var(--ink-900)" /> Pro
-    </span>
-  );
-}
-
 const CONTACT_EMAIL = "hej@kassepris.se";
 
 function Footer() {
@@ -74,7 +66,7 @@ export default function Landing() {
             Veckans bästa priser, på ett ställe.
           </h1>
           <p className="kp-fade-up kp-fade-up-3" style={{ font: "var(--text-body-lg)", color: "var(--text-secondary)", margin: 0, maxWidth: 520, textWrap: "pretty" }}>
-            Kassepris jämför veckans erbjudanden från ICA, Coop och Willys, utan att öppna tre appar eller bläddra i tre reklamblad. Gratis att använda. Vi bygger det just nu. Gå med i väntelistan så hör vi av oss när det är dags.
+            Kassepris jämför veckans erbjudanden från ICA, Coop och Willys, utan att öppna tre appar eller bläddra i tre reklamblad. Gratis att använda. Vi bygger det just nu, gå med i väntelistan för tidig tillgång och exklusiva lanseringsförmåner.
           </p>
           <div className="kp-fade-up kp-fade-up-4" style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
             <WaitlistForm />
@@ -100,46 +92,6 @@ export default function Landing() {
         <StepShowcase />
       </section>
 
-      {/* smart list teaser — pro feature, framed as a waitlist incentive */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", padding: "8px 24px" }}>
-        <div style={{ background: "var(--green-800)", borderRadius: "var(--radius-lg)", padding: "32px 28px", color: "var(--cream-050)", display: "flex", flexDirection: "column", gap: 26 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "center" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <ProPill />
-              <div style={{ font: "var(--text-h2)", color: "var(--cream-050)" }}>Smart inköpslista</div>
-              <p style={{ font: "var(--text-body-md)", color: "var(--cream-100)", margin: 0, textWrap: "pretty" }}>
-                Låt Kassepris sätta ihop din billigaste inköpskorg, helt automatiskt.
-              </p>
-              <p style={{ font: "var(--text-body-sm)", color: "var(--cream-100)", margin: 0, textWrap: "pretty" }}>
-                Kassepris är och förblir gratis att använda för att jämföra priser. Smart inköpslista är en valfri Pro-funktion.
-              </p>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {[["layers", "Smartare inköpslista"], ["route", "Mer kontroll över din handling"], ["tag", "Fler sätt att spara"]].map(([ic, t]) => (
-                <div key={t} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                  <span style={{ width: 34, height: 34, flexShrink: 0, borderRadius: "var(--radius-sm)", background: "color-mix(in srgb, var(--brand-accent) 20%, transparent)", display: "inline-flex", alignItems: "center", justifyContent: "center" }}><Icon name={ic} size={17} color="var(--brand-accent)" /></span>
-                  <span style={{ font: "var(--text-body-md)", color: "var(--cream-050)" }}>{t}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div style={{ borderTop: "1px solid color-mix(in srgb, var(--cream-050) 18%, transparent)", paddingTop: 22, display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 18 }}>
-            <div style={{ display: "flex", alignItems: "flex-start", gap: 12, maxWidth: 420 }}>
-              <span style={{ width: 36, height: 36, flexShrink: 0, borderRadius: "var(--radius-sm)", background: "var(--brand-accent)", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-                <Icon name="gift" size={19} color="var(--ink-900)" />
-              </span>
-              <p style={{ font: "var(--text-body-md)", color: "var(--cream-050)", margin: 0, textWrap: "pretty" }}>
-                Gå med i väntelistan och bli en av <strong>de första 100</strong> att få <strong>1 månad Kassepris Pro gratis</strong> vid lansering.
-              </p>
-            </div>
-            <div style={{ flex: "1 1 280px", maxWidth: 420 }}>
-              <WaitlistForm size="md" showTerms={false} />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* faq */}
       <section style={{ maxWidth: 720, margin: "0 auto", padding: "48px 24px 8px" }}>
         <h2 style={{ font: "var(--text-h2)", color: "var(--ink-900)", margin: "0 0 32px", textAlign: "center" }}>Vanliga frågor</h2>
@@ -149,7 +101,7 @@ export default function Landing() {
       {/* final CTA */}
       <section style={{ maxWidth: 1100, margin: "0 auto", padding: "48px 24px 64px", textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
         <h2 style={{ font: "var(--text-h2)", color: "var(--ink-900)", margin: 0, textWrap: "balance" }}>Var först att veta när vi lanserar</h2>
-        <p style={{ font: "var(--text-body-md)", color: "var(--text-secondary)", margin: 0, maxWidth: 440 }}>Ingen spam. Bara ett mejl när Kassepris är redo att användas.</p>
+        <p style={{ font: "var(--text-body-md)", color: "var(--text-secondary)", margin: 0, maxWidth: 440 }}>Ingen spam. Bara tidig tillgång och exklusiva lanseringsförmåner när Kassepris är redo att användas.</p>
         <WaitlistForm />
       </section>
 

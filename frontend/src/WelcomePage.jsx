@@ -121,8 +121,8 @@ export function WelcomePage({ status }) {
                 {status === "verified" ? "Välkommen till Kassepris!" : "Du står redan på listan!"}
               </h1>
               <p style={{ font: "var(--text-body-lg)", color: "var(--text-secondary)", margin: 0, textWrap: "pretty" }}>
-                Din plats på väntelistan är säkrad. Vi hör av oss så snart Kassepris är redo, och som en
-                av de första 100 kan du få <strong>1 månad Kassepris Pro gratis</strong> vid lansering.
+                Din plats på väntelistan är säkrad. Vi hör av oss så snart Kassepris är redo. Som tidig
+                supporter får du <strong>exklusiva lanseringsförmåner</strong>. Detaljer meddelas innan lansering.
               </p>
             </div>
 
