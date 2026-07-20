@@ -68,14 +68,26 @@
   display: flex;
   align-items: baseline;
   gap: 5px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 .kp-deal-card-price {
   font: 700 18px/1 var(--font-display);
   color: var(--green-800);
+  white-space: nowrap;
 }
-.kp-deal-card-unit { font: 400 9.5px/1 var(--font-body); color: var(--text-secondary); }
-.kp-deal-card-was { font: 400 10.5px/1 var(--font-body); color: var(--ink-300); text-decoration: line-through; }
+.kp-deal-card-unit { font: 400 9.5px/1 var(--font-body); color: var(--text-secondary); white-space: nowrap; }
+/* Always rendered (even empty) so every card reserves the same vertical
+   space here, keeping compare rows/footer aligned regardless of whether
+   a given product happens to have a discount. */
+.kp-deal-card-discount-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: nowrap;
+  min-height: 19px;
+  margin-top: 4px;
+}
+.kp-deal-card-was { font: 400 10.5px/1 var(--font-body); color: var(--ink-300); text-decoration: line-through; white-space: nowrap; }
 .kp-deal-card-discount {
   background: var(--deal-badge-bg);
   color: var(--deal-badge-text);
@@ -83,6 +95,8 @@
   letter-spacing: 0.03em;
   padding: 3px 6px;
   border-radius: var(--radius-pill);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .kp-deal-card-compare {

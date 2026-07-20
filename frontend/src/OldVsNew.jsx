@@ -4,21 +4,30 @@
    deal cards. Coded illustrations, not screenshots or real flyer content. */
 import React from "react";
 import "./oldvsnew.css";
-import { ProductDealCard } from "./ProductDealCard.jsx";
+import { ProductDealCard, DEMO_DEALS } from "./ProductDealCard.jsx";
 
-function OldWayFlyer({ store, color, bg, price, sub, rotate }) {
+const FLYER_SLOTS = [
+  ["#EFE3D0", "19"],
+  ["#E7F1E8", "24"],
+  ["#F3E4C9", "14"],
+];
+
+function OldWayFlyer({ store, color, rotate }) {
   return (
     <div className="kp-ovn-flyer" style={{ "--flyer-rotate": `${rotate}deg` }}>
       <div className="kp-ovn-flyer-header" style={{ background: color }}>
         <span>{store}</span>
         <span className="kp-ovn-flyer-week">V.29</span>
       </div>
-      <div className="kp-ovn-flyer-photo" style={{ background: bg }}>
-        <div className="kp-ovn-flyer-tag">
-          <span className="kp-ovn-flyer-tag-price">{price}<sup>90</sup></span>
-        </div>
+      <div className="kp-ovn-flyer-body">
+        {FLYER_SLOTS.map(([bg, price]) => (
+          <div key={price} className="kp-ovn-flyer-slot" style={{ background: bg }}>
+            <div className="kp-ovn-flyer-tag">
+              <span className="kp-ovn-flyer-tag-price">{price}<sup>90</sup></span>
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="kp-ovn-flyer-sub">{sub}</div>
     </div>
   );
 }
@@ -26,9 +35,9 @@ function OldWayFlyer({ store, color, bg, price, sub, rotate }) {
 function OldWayVisual() {
   return (
     <div className="kp-ovn-visual kp-ovn-visual-old">
-      <OldWayFlyer store="ICA" color="var(--store-ica)" bg="var(--store-ica-bg)" price="19" sub="Bryggkaffe 450 g" rotate={-7} />
-      <OldWayFlyer store="Coop" color="var(--store-coop)" bg="var(--store-coop-bg)" price="24" sub="Ägg 12-pack" rotate={4} />
-      <OldWayFlyer store="Willys Lund" color="var(--store-willys)" bg="var(--store-willys-bg)" price="14" sub="Mellanmjölk 1 l" rotate={-2} />
+      <OldWayFlyer store="ICA" color="var(--store-ica)" rotate={-7} />
+      <OldWayFlyer store="Coop" color="var(--store-coop)" rotate={4} />
+      <OldWayFlyer store="Willys" color="var(--store-willys)" rotate={-2} />
     </div>
   );
 }
@@ -36,24 +45,8 @@ function OldWayVisual() {
 function NewWayVisual() {
   return (
     <div className="kp-ovn-visual kp-ovn-visual-new">
-      <ProductDealCard
-        icon="jar" tint="#F1E8D6" name="Gevalia Mellanrost" sub="Bryggkaffe · 450 g"
-        storeLabel="Willys Lund" storeColor="var(--store-willys)" storeBg="var(--store-willys-bg)"
-        price="49,90" unit="kr" was="74,90" discount="-33%"
-        others={[
-          { label: "ICA", color: "var(--store-ica)", bg: "var(--store-ica-bg)", price: "64,90" },
-          { label: "Coop", color: "var(--store-coop)", bg: "var(--store-coop-bg)", price: "69,90" },
-        ]}
-      />
-      <ProductDealCard
-        icon="milk" tint="#E7F1E8" name="Mellanmjölk" sub="Mejeri · 1 l"
-        storeLabel="ICA" storeColor="var(--store-ica)" storeBg="var(--store-ica-bg)"
-        price="12,90" unit="kr"
-        others={[
-          { label: "Coop", color: "var(--store-coop)", bg: "var(--store-coop-bg)", price: "14,90" },
-          { label: "Willys Lund", color: "var(--store-willys)", bg: "var(--store-willys-bg)", price: "15,90" },
-        ]}
-      />
+      <ProductDealCard {...DEMO_DEALS.coffee} />
+      <ProductDealCard {...DEMO_DEALS.cheese} />
     </div>
   );
 }

@@ -13,6 +13,8 @@ export function Icon({ name, size = 20, color = "currentColor", sw = 2, style })
     case "mail": return svg(<g {...p}><rect x="3" y="5" width="18" height="14" rx="2.2" /><path d="M3.5 6.5l8.5 6.5 8.5-6.5" /></g>);
     case "milk": return svg(<g {...p}><path d="M8 9V5.5L10 3h4l2 2.5V9" /><path d="M8 9h8v11a1.3 1.3 0 0 1-1.3 1.3H9.3A1.3 1.3 0 0 1 8 20V9z" /><path d="M8 13.5h8" /></g>);
     case "jar": return svg(<g {...p}><rect x="7" y="8" width="10" height="12" rx="2" /><path d="M9 8V5.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1V8" /><path d="M7 12.5h10" /></g>);
+    case "share": return svg(<g {...p}><path d="M12 15V4M8.5 7.5L12 4l3.5 3.5" /><path d="M6 11v8.5h12V11" /></g>);
+    case "star": return svg(<path d="M12 3.5l2.5 5.6 6 .5-4.6 4 1.4 5.9L12 16.4 6.7 19.5l1.4-5.9-4.6-4 6-.5z" fill={color} stroke="none" />);
     case "check": return svg(<path {...p} d="M5 12.5l4.5 4.5L19 7" />);
     case "search": return svg(<g {...p}><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" /></g>);
     case "filter": return svg(<path {...p} d="M4 5h16l-6 8v6l-4-2v-4z" />);
