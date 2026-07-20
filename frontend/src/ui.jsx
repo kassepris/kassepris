@@ -3,8 +3,6 @@
    fixed-dimension product cards. */
 import React from "react";
 import * as K from "./data.js";
-import iconOnLight from "./assets/brand/icon-512-on-light.png";
-import iconOnDark from "./assets/brand/icon-512-on-dark.png";
 
 const WEEK = "Vecka 28";
 const MAXW = 1180;
@@ -16,6 +14,7 @@ const STORE_META = {
 };
 const chainOf = (storeId) => (K.storeById(storeId) || {}).chain;
 const metaOf = (storeId) => STORE_META[chainOf(storeId)] || STORE_META.ica;
+const CAT_ICON = { mejeri: "milk", frukt: "apple", kott: "meat", fisk: "fish", skafferi: "jar", brod: "bread", dryck: "cup", snacks: "cookie" };
 
 // ───────────────────────── Icons ─────────────────────────
 function Icon({ name, size = 20, color = "currentColor", sw = 2, style }) {
@@ -59,6 +58,16 @@ function Icon({ name, size = 20, color = "currentColor", sw = 2, style }) {
     case "instagram": return svg(<g {...p}><rect x="4" y="4" width="16" height="16" rx="4.6" /><circle cx="12" cy="12" r="3.6" /><circle cx="16.6" cy="7.4" r="1" fill={color} stroke="none" /></g>);
     case "facebook": return svg(<path fill={color} stroke="none" d="M13.4 21v-7h2.3l.4-2.9h-2.7V9.2c0-.85.24-1.43 1.46-1.43H16.2V5.16c-.27-.03-1.2-.11-2.28-.11-2.26 0-3.8 1.38-3.8 3.9v2.18H7.8V14h2.32v7z" />);
     case "tiktok": return svg(<path fill={color} stroke="none" d="M14.2 3.5c.3 1.6 1.3 3 3.3 3.3v2.4c-1.1 0-2.2-.34-3.1-.94v5.9c0 2.7-2.1 4.84-4.8 4.84S4.8 16.9 4.8 14.2s2.2-4.84 4.9-4.72v2.45c-1.4-.1-2.55 1-2.55 2.37 0 1.35 1.05 2.44 2.4 2.44 1.36 0 2.45-1.05 2.45-2.5V3.5z" />);
+    case "milk": return svg(<g {...p}><path d="M8 9V5.5L10 3h4l2 2.5V9" /><path d="M8 9h8v11a1.3 1.3 0 0 1-1.3 1.3H9.3A1.3 1.3 0 0 1 8 20V9z" /><path d="M8 13.5h8" /></g>);
+    case "apple": return svg(<g {...p}><path d="M12 8.5c-1.8-2-5-1.6-5.6 1.4-.6 3 1.4 8.1 4.3 9.6 1 .5 1.9.5 2.6 0 .3-.2.6-.2.9 0 .7.5 1.6.5 2.6 0 2.9-1.5 4.9-6.6 4.3-9.6-.6-3-3.8-3.4-5.6-1.4z" /><path d="M12 8.5c0-2 .8-3.3 2.3-4" /></g>);
+    case "meat": return svg(<g fill={color} stroke="none"><g transform="rotate(-30 12 12)"><rect x="7.5" y="10.7" width="9" height="2.6" rx="1.3" /><circle cx="7.5" cy="9.7" r="2.3" /><circle cx="7.5" cy="14.3" r="2.3" /><circle cx="16.5" cy="9.7" r="2.3" /><circle cx="16.5" cy="14.3" r="2.3" /></g></g>);
+    case "fish": return svg(<g fill={color} stroke="none"><path d="M8 12C8 8.5 11.5 6 15.5 6C19.5 6 22 8.5 22 12C22 15.5 19.5 18 15.5 18C11.5 18 8 15.5 8 12Z" /><path d="M8 12L2 6.5V17.5Z" /><circle cx="18.3" cy="9.6" r="1.15" fill="#E4EEF0" /></g>);
+    case "jar": return svg(<g {...p}><rect x="7" y="8" width="10" height="12" rx="2" /><path d="M9 8V5.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1V8" /><path d="M7 12.5h10" /></g>);
+    case "bread": return svg(<g {...p}><path d="M4 13c0-4 3.5-7 8-7s8 3 8 7v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z" /><path d="M9 9.5v5M14 9.5v5" /></g>);
+    case "cup": return svg(<g {...p}><path d="M7 9h10l-1 10.5a1.5 1.5 0 0 1-1.5 1.5h-5a1.5 1.5 0 0 1-1.5-1.5z" /><path d="M9 9V6.5a3 3 0 0 1 6 0V9" /></g>);
+    case "cookie": return svg(<g><circle cx="12" cy="12" r="8" {...p} /><circle cx="9" cy="10" r="1" fill={color} stroke="none" /><circle cx="14.5" cy="9.2" r="1" fill={color} stroke="none" /><circle cx="15" cy="14.2" r="1" fill={color} stroke="none" /><circle cx="9.8" cy="15" r="1" fill={color} stroke="none" /></g>);
+    case "flame": return svg(<path fill={color} stroke="none" d="M12 2c1 3-1 4-2 6-1.3 2.2-2.5 4-2.5 6.5 0 3.6 2.9 6.5 6.5 6.5s6.5-2.9 6.5-6.5c0-2.8-1.5-4.7-3-6.3 0 1.3-.6 2.3-1.5 3 .3-3-1-6.5-4-9.2z" />);
+    case "coin": return svg(<g {...p}><circle cx="12" cy="12" r="8" /><path d="M9.3 14.2c.4.9 1.3 1.4 2.4 1.4 1.5 0 2.5-.8 2.5-1.9 0-1.3-1.1-1.6-2.6-2-1.5-.4-2.4-.8-2.4-2 0-1.1 1-1.9 2.4-1.9 1.1 0 2 .5 2.4 1.4" /><path d="M12 7.3v1.1M12 15.6v1.1" /></g>);
     default: return svg(<circle {...p} cx="12" cy="12" r="8" />);
   }
 }
@@ -71,17 +80,37 @@ function GoogleGlyph({ size = 18 }) {
 }
 
 // ───────────────────────── Primitives ─────────────────────────
-// Logo — the brand icon (on-light for green tile, on-dark for the cream/reversed
-// tile) plus the wordmark. Always source the 512px export and let the browser
-// downscale it — sharper on retina displays than serving a small PNG close to
-// its native size.
-function Wordmark({ size = 25, mode = "light" }) {
-  const gap = Math.round(size * 0.28);
-  const wordSize = Math.round(size * 0.62);
+function Wordmark({ size = 25, color = "var(--brand-primary)" }) {
+  return <span style={{ font: `800 ${size}px/1 var(--font-display)`, color, letterSpacing: "0.01em" }}>Kassepris</span>;
+}
+
+// Icon mark — solid green tile, cream "K". `reversed` swaps to a cream tile
+// with a green K for use on dark (green) surfaces where the default tile
+// would disappear into the background.
+function LogoMark({ size = 34, reversed = false }) {
+  const r = Math.round(size * 0.22);
+  const fs = Math.round(size * 0.74);
   return (
-    <span style={{ display: "inline-flex", alignItems: "center", gap }}>
-      <img src={mode === "dark" ? iconOnDark : iconOnLight} alt="" width={size} height={size} style={{ display: "block", flexShrink: 0 }} />
-      <span style={{ font: `800 ${wordSize}px/1 var(--font-display)`, color: mode === "dark" ? "var(--cream-050)" : "var(--green-800)", letterSpacing: "0.01em" }}>Kassepris</span>
+    <span style={{
+      width: size, height: size, borderRadius: r, flexShrink: 0,
+      background: reversed ? "var(--cream-050)" : "var(--green-800)",
+      display: "inline-flex", alignItems: "center", justifyContent: "center",
+    }}>
+      <span style={{
+        font: `800 ${fs}px/1 var(--font-display)`, letterSpacing: "-0.01em",
+        color: reversed ? "var(--green-800)" : "var(--cream-050)", transform: "translateY(5%)",
+      }}>K</span>
+    </span>
+  );
+}
+
+// Full logo lockup — icon + wordmark. `size` matches the old Wordmark API
+// (it's the wordmark's font-size); the tile scales proportionally.
+function Logo({ size = 24, reversed = false }) {
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: Math.max(6, Math.round(size * 0.32)) }}>
+      <LogoMark size={Math.round(size * 1.7)} reversed={reversed} />
+      <Wordmark size={size} color={reversed ? "var(--cream-050)" : "var(--brand-primary)"} />
     </span>
   );
 }
@@ -217,36 +246,113 @@ function pressHandlers(scale = 0.98) {
   };
 }
 
-// ───────────────────────── Product card (grid) — fixed dimensions ─────────────────────────
+// ───────────────────────── Deal card (grid) — price-intelligence card, no photography ─────────────────────────
+function Stat({ label, value, accent }) {
+  return (
+    <div style={{ minWidth: 0 }}>
+      <div style={{ font: "var(--text-label-sm)", color: "var(--text-secondary)" }}>{label}</div>
+      <div style={{ font: "var(--text-label-md)", color: accent ? "var(--green-800)" : "var(--ink-900)", marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{value}</div>
+    </div>
+  );
+}
+
+// Minimal sparkline — deterministic synthetic history, not decorative: area+line+dot.
+function PriceSparkline({ points, low, high, height = 48, color = "var(--green-700)" }) {
+  const w = 200, h = height, pad = 4;
+  const range = Math.max(0.01, high - low);
+  const stepX = (w - pad * 2) / (points.length - 1);
+  const xy = points.map((v, i) => [pad + i * stepX, pad + (1 - (v - low) / range) * (h - pad * 2)]);
+  const line = xy.map(([x, y], i) => `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`).join(" ");
+  const area = `${line} L${xy[xy.length - 1][0].toFixed(1)},${h - pad} L${xy[0][0].toFixed(1)},${h - pad} Z`;
+  return (
+    <svg width="100%" height={h} viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="none" style={{ display: "block" }}>
+      <path d={area} fill="color-mix(in srgb, var(--green-700) 12%, transparent)" stroke="none" />
+      <path d={line} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx={xy[xy.length - 1][0]} cy={xy[xy.length - 1][1]} r="3.5" fill={color} />
+    </svg>
+  );
+}
+
 function ProductCard({ product, favorites, onOpen }) {
   const favWith = (favorites || []).filter((id) => K.availableStoreIds(product).includes(id));
   const scope = favWith.length ? favWith : K.availableStoreIds(product);
   const best = K.bestVariant(product, scope);
   const outsideFav = (favorites || []).length > 0 && favWith.length === 0;
-  const m = best ? metaOf(best.storeId) : STORE_META.ica;
-  const store = best ? K.storeById(best.storeId) : null;
-  const disc = best && best.variant.discount;
+  const cat = K.catById(product.cat) || {};
+  const insights = K.dealInsights(product, scope);
+  if (!best) return null;
+  const bestStore = K.storeById(best.storeId);
+  const bestMeta = metaOf(best.storeId);
+  const rawOthers = scope.filter((id) => id !== best.storeId)
+    .map((id) => ({ id, b: K.bestVariant(product, [id]) }))
+    .filter((o) => o.b);
+  const others = rawOthers.filter((o) => o.b.variant.unit === best.variant.unit).sort((a, b) => a.b.val - b.b.val);
+  const shown = others.slice(0, 3);
+  const moreCount = others.length - shown.length;
+  const diffPack = others.length === 0 && rawOthers.length > 0;
+
   return (
     <div onClick={() => onOpen(product)} {...pressHandlers()} style={{
       display: "flex", flexDirection: "column", background: "var(--bg-surface)", borderRadius: "var(--radius-lg)",
       boxShadow: "var(--shadow-card)", overflow: "hidden", cursor: "pointer", height: "100%", minWidth: 0,
       transition: "transform var(--duration-fast) var(--ease-standard)",
     }}>
-      <div style={{ position: "relative" }}>
-        <ImageTile product={product} aspect="4 / 3" radius="0" />
-        <span style={{ position: "absolute", top: 10, left: 10, background: m.bg, color: m.color, font: "var(--text-label-sm)", padding: "3px 9px", borderRadius: "var(--radius-pill)" }}>{m.label}</span>
-        {disc ? <span style={{ position: "absolute", top: 10, right: 10 }}><DiscountBadge>{disc}</DiscountBadge></span> : null}
+      <div style={{ display: "flex", gap: 12, alignItems: "flex-start", padding: "16px 18px 0" }}>
+        <span style={{ width: 38, height: 38, borderRadius: "var(--radius-md)", background: cat.tint, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <Icon name={CAT_ICON[product.cat] || "tag"} size={19} color="var(--green-700)" />
+        </span>
+        <div style={{ minWidth: 0, flex: 1 }}>
+          <div style={{ font: "var(--text-h3)", color: "var(--ink-900)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{product.name}</div>
+          <div style={{ font: "var(--text-body-sm)", color: "var(--text-secondary)", marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{best.variant.name} · {best.variant.size} · {cat.name}</div>
+        </div>
       </div>
-      <div style={{ padding: 13, display: "flex", flexDirection: "column", gap: 5, flex: 1 }}>
-        <div style={{ font: "var(--text-body-md)", fontWeight: 500, color: "var(--ink-900)", lineHeight: 1.25, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden", minHeight: "2.5em" }}>{product.name}</div>
-        <div style={{ marginTop: "auto", paddingTop: 4, display: "flex", alignItems: "baseline", gap: 6, flexWrap: "wrap" }}>
-          <span style={{ font: "var(--text-display-sm)", color: "var(--green-800)" }}>{best ? best.variant.price : "–"}</span>
-          <span style={{ font: "var(--text-label-sm)", color: "var(--text-secondary)" }}>{best ? best.variant.unit : ""}</span>
-          {best && best.variant.ord ? <span style={{ font: "var(--text-body-sm)", color: "var(--ink-300)", textDecoration: "line-through" }}>{best.variant.ord}</span> : null}
+
+      <div style={{ padding: "14px 18px 4px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 8 }}>
+          <span style={{ font: "var(--text-label-caps)", letterSpacing: "var(--tracking-caps)", textTransform: "uppercase", color: "var(--green-700)" }}>Bästa pris</span>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 6, minWidth: 0 }}>
+            <span style={{ background: bestMeta.bg, color: bestMeta.color, font: "var(--text-label-sm)", padding: "3px 9px", borderRadius: "var(--radius-pill)", flexShrink: 0 }}>{bestMeta.label}</span>
+            <span style={{ font: "var(--text-label-sm)", color: "var(--text-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{bestStore.short}</span>
+          </span>
         </div>
-        <div style={{ font: "var(--text-label-sm)", color: "var(--text-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-          {outsideFav ? "utanför dina butiker" : `${store ? store.short : ""} · ${scope.length} butik${scope.length > 1 ? "er" : ""}`}
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
+          <span style={{ font: "var(--text-display-lg)", color: "var(--green-800)" }}>{best.variant.price}</span>
+          <span style={{ font: "var(--text-label-md)", color: "var(--text-secondary)" }}>{best.variant.unit}</span>
+          {best.variant.ord ? <span style={{ font: "var(--text-body-sm)", color: "var(--ink-300)", textDecoration: "line-through" }}>{best.variant.ord}</span> : null}
+          {best.variant.discount ? <DiscountBadge>{best.variant.discount}</DiscountBadge> : null}
         </div>
+        {outsideFav ? <div style={{ font: "var(--text-label-sm)", color: "var(--text-secondary)", marginTop: 6 }}>utanför dina butiker</div> : null}
+        {insights ? (
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 5, marginTop: 10, background: insights.tone === "best" ? "var(--yellow-100)" : "var(--ink-150)", color: insights.tone === "best" ? "var(--green-800)" : "var(--ink-700)", border: `1px solid ${insights.tone === "best" ? "var(--yellow-500)" : "var(--border-default)"}`, font: "var(--text-label-sm)", fontWeight: 600, padding: "5px 11px 5px 8px", borderRadius: "var(--radius-pill)" }}>
+            <Icon name={insights.badgeIcon} size={13} color={insights.tone === "best" ? "var(--green-800)" : "var(--ink-700)"} />{insights.badge}
+          </span>
+        ) : null}
+      </div>
+
+      <div style={{ padding: "12px 18px 4px", marginTop: 8, borderTop: "1px solid var(--border-default)" }}>
+        {shown.length ? shown.map((o, i) => {
+          const m = metaOf(o.id), s = K.storeById(o.id);
+          return (
+            <div key={o.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, padding: "9px 0", borderTop: i > 0 ? "1px solid var(--border-default)" : "none" }}>
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, minWidth: 0 }}>
+                <span style={{ background: m.bg, color: m.color, font: "var(--text-label-sm)", padding: "3px 9px", borderRadius: "var(--radius-pill)", flexShrink: 0 }}>{m.label}</span>
+                <span style={{ font: "var(--text-label-sm)", color: "var(--text-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{s.short}</span>
+              </span>
+              <span style={{ display: "flex", alignItems: "baseline", gap: 5, flexShrink: 0 }}>
+                <span style={{ font: "var(--text-display-sm)", color: "var(--ink-700)" }}>{o.b.variant.price}</span>
+                <span style={{ font: "var(--text-label-sm)", color: "var(--text-secondary)" }}>{o.b.variant.unit}</span>
+              </span>
+            </div>
+          );
+        }) : (
+          <div style={{ padding: "9px 0", font: "var(--text-label-sm)", color: "var(--text-secondary)" }}>{diffPack ? "Annan förpackning hos dina andra butiker" : `Endast hos ${bestMeta.label} den här veckan`}</div>
+        )}
+        {moreCount > 0 ? <div style={{ padding: "6px 0 4px", font: "var(--text-label-sm)", color: "var(--text-secondary)" }}>+{moreCount} fler butik{moreCount > 1 ? "er" : ""}</div> : null}
+      </div>
+
+      <div style={{ marginTop: "auto", padding: "12px 18px", borderTop: "1px solid var(--border-default)", display: "flex", alignItems: "center", justifyContent: "space-between", color: "var(--text-link)" }}>
+        <span style={{ font: "var(--text-label-md)" }}>Visa erbjudandedetaljer</span>
+        <Icon name="right" size={17} color="var(--text-link)" />
       </div>
     </div>
   );
@@ -331,14 +437,14 @@ function WebHeader({ active, onNav, onHome, onSearchSubmit, listCount, onProfile
   );
   const logo = (size) => (
     <button onClick={onHome} aria-label="Kassepris – till startsidan" style={{ display: "inline-flex", alignItems: "center", border: "none", background: "none", cursor: "pointer", padding: 0, flexShrink: 0 }}>
-      <Wordmark size={size} />
+      <Logo size={size} />
     </button>
   );
   return (
     <header style={{ flexShrink: 0, background: "var(--bg-surface)", borderBottom: "1px solid var(--border-default)", position: "relative", zIndex: 12 }}>
       {/* desktop: logo · search · cubic icons */}
       <div className="kp-hd-row" style={{ maxWidth: MAXW, margin: "0 auto", padding: "0 24px", minHeight: 68, alignItems: "center", gap: 20 }}>
-        {logo(40)}
+        {logo(25)}
         <div className="kp-hd-search" style={{ flex: 1, maxWidth: 480, margin: "0 auto" }}><HeaderSearch onSearch={onSearchSubmit} /></div>
         {icons("d")}
       </div>
@@ -346,7 +452,7 @@ function WebHeader({ active, onNav, onHome, onSearchSubmit, listCount, onProfile
       {/* mobile: logo + icons row, then full-width search */}
       <div className="kp-hd-mobile">
         <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 14px 0" }}>
-          {logo(34)}
+          {logo(23)}
           <div style={{ marginLeft: "auto" }}>{icons("m")}</div>
         </div>
         <div style={{ padding: "11px 14px 12px" }}><HeaderSearch onSearch={onSearchSubmit} full /></div>
@@ -371,7 +477,7 @@ function Footer({ onNav, onHome, onProfile }) {
       <div style={{ maxWidth: MAXW, margin: "0 auto", padding: "44px 24px 26px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: "34px 24px" }}>
           <div style={{ minWidth: 0 }}>
-            <Wordmark size={34} mode="dark" />
+            <Logo size={24} reversed />
             <p style={{ font: "var(--text-body-sm)", color: "var(--cream-100)", margin: "12px 0 16px", maxWidth: 250, textWrap: "pretty" }}>Veckans bästa matpriser från ICA, Coop och Willys – samlade på ett ställe.</p>
             <div style={{ display: "flex", gap: 10 }}>
               {soc("instagram", "https://instagram.com", "Instagram")}
@@ -511,7 +617,7 @@ function Sheet({ open, onClose, title, children, footer, maxWidth = 460 }) {
 
 export {
   WEEK, MAXW, STORE_META, chainOf, metaOf, NAV_ITEMS,
-  Icon, AppleGlyph, GoogleGlyph, Wordmark, IconButton, Avatar, LocationChip, SoonTag, SaveChip, DiscountBadge, WeekChip,
-  StepDots, Segmented, ImageTile, pressHandlers, ProductCard, ProductRow,
+  Icon, AppleGlyph, GoogleGlyph, Wordmark, Logo, LogoMark, IconButton, Avatar, LocationChip, SoonTag, SaveChip, DiscountBadge, WeekChip,
+  StepDots, Segmented, ImageTile, pressHandlers, ProductCard, ProductRow, CAT_ICON, Stat, PriceSparkline,
   WebHeader, WebShell, PageContainer, PageHeader, BackLink, SectionHeader, SmartListCard, Sheet, Footer,
 };

@@ -7,9 +7,17 @@
 
 export const money = (s) => (typeof s === "number" ? s : parseFloat(String(s).replace(/[:,]/, ".")));
 export const fmt = (n) => {
-  const kr = Math.floor(n);
-  const oren = Math.round((n - kr) * 100);
+  const cents = Math.round(n * 100);
+  const kr = Math.floor(cents / 100);
+  const oren = cents % 100;
   return kr + "," + String(oren).padStart(2, "0");
+};
+// deterministic 0..1 pseudo-random from a string seed (stable across re-renders)
+const seedFrac = (str, salt) => {
+  let h = 2166136261;
+  const s = str + "|" + salt;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return ((h >>> 0) % 10000) / 10000;
 };
 
 // ---- Stores: specific branches around Lund (student city) ----
@@ -290,6 +298,76 @@ export function worstVariant(product, storeIds) {
     });
   });
   return worst;
+}
+// Price-intelligence stats for the Deal Card + detail page. avg/savings only compare
+// stores whose cheapest variant shares the same unit as the overall best (a per-bottle
+// price isn't comparable to a per-6-pack price) — same guard Home's SpotlightCompare
+// uses. `low`/`high`/history points are synthesized deterministically since this mock
+// data has no real historical time series.
+export function dealInsights(product, storeIds) {
+  const ids = (storeIds && storeIds.length) ? storeIds : availableStoreIds(product);
+  const rows = ids.map((id) => bestVariant(product, [id])).filter(Boolean);
+  if (!rows.length) return null;
+  const overallBest = rows.reduce((a, b) => (b.val < a.val ? b : a));
+  const comparable = rows.filter((r) => r.variant.unit === overallBest.variant.unit);
+  const vals = comparable.map((r) => r.val);
+  const current = overallBest.val;
+  const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+  const multiStore = comparable.length > 1;
+  const savingsPct = (avg > 0 && multiStore) ? Math.round((1 - current / avg) * 100) : 0;
+  const savingsKr = multiStore ? Math.max(0, Math.round((avg - current) * 100) / 100) : 0;
+  const atLow = seedFrac(product.id, "low") < 0.35;
+  const dropFactor = 0.85 + seedFrac(product.id, "lowfactor") * 0.12;
+  const low = atLow ? current : Math.round(current * dropFactor * 100) / 100;
+  let badge, tone, badgeIcon;
+  if (atLow) { badge = "Lägsta på 6 månader"; tone = "best"; badgeIcon = "star"; }
+  else if (savingsPct >= 15) { badge = "Bra pris"; tone = "best"; badgeIcon = "flame"; }
+  else if (savingsKr >= 3) { badge = `Spar ${fmt(savingsKr)} kr`; tone = "best"; badgeIcon = "coin"; }
+  else { badge = "Snittpris"; tone = "neutral"; badgeIcon = "tag"; }
+  return { current, low, avg, savingsPct: Math.max(0, savingsPct), savingsKr, atLow, multiStore, badge, tone, badgeIcon };
+}
+
+// Synthetic weekly price series (10 points) ending at the real current price, bounded
+// by dealInsights' low/high, plus a simple trend read (compares the last 3 points to
+// the rest). Illustrative only — see note above.
+export function priceHistory(product, storeIds) {
+  const ins = dealInsights(product, storeIds);
+  if (!ins) return null;
+  const high = Math.round(Math.max(ins.avg * (1.1 + seedFrac(product.id, "hi") * 0.16), ins.current * 1.15) * 100) / 100;
+  const n = 10;
+  const points = [];
+  for (let i = 0; i < n; i++) {
+    const t = i / (n - 1);
+    const wobble = (seedFrac(product.id, "pt" + i) - 0.5) * (high - ins.low) * 0.3;
+    const v = Math.min(high, Math.max(ins.low, high - (high - ins.current) * t + wobble));
+    points.push(Math.round(v * 100) / 100);
+  }
+  points[n - 1] = ins.current;
+  const earlier = points.slice(0, -3);
+  const earlierAvg = earlier.reduce((a, b) => a + b, 0) / Math.max(1, earlier.length);
+  const recentAvg = points.slice(-3).reduce((a, b) => a + b, 0) / 3;
+  const trend = recentAvg < earlierAvg * 0.97 ? "down" : recentAvg > earlierAvg * 1.03 ? "up" : "flat";
+  return { points, current: ins.current, avg: ins.avg, low: ins.low, high, trend };
+}
+
+// Kassepris-poäng (1-10) — a transparent, explainable score built from the same real
+// signals shown elsewhere on the page (never a black box).
+export function dealScore(product, storeIds) {
+  const ins = dealInsights(product, storeIds);
+  if (!ins) return null;
+  const ids = (storeIds && storeIds.length) ? storeIds : availableStoreIds(product);
+  const storeCount = ids.filter((id) => bestVariant(product, [id])).length;
+  const best = bestVariant(product, ids);
+  let score = 2;
+  const reasons = [];
+  if (ins.savingsPct >= 20) { score += 4; reasons.push(`${ins.savingsPct}% under snittpriset`); }
+  else if (ins.savingsPct >= 10) { score += 3; reasons.push(`${ins.savingsPct}% under snittpriset`); }
+  else if (ins.savingsPct >= 5) { score += 2; reasons.push(`${ins.savingsPct}% under snittpriset`); }
+  if (ins.atLow) { score += 3; reasons.push("Lägsta priset på 6 månader"); }
+  if (storeCount >= 3) { score += 2; reasons.push("Finns hos flera butiker"); }
+  if (best && best.variant.discount) { score += 1; reasons.push(`${best.variant.discount} rabatt just nu`); }
+  if (!reasons.length) reasons.push("Normalpris den här veckan");
+  return { score: Math.max(1, Math.min(10, score)), reasons };
 }
 export const availableStoreIds = (product) => product.stores.map((b) => b.storeId);
 export const hasDiscount = (product) =>

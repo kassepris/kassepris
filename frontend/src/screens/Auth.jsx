@@ -3,7 +3,7 @@ import React from "react";
 import * as A from "../ui.jsx";
 import { Button } from "../design-system/components.jsx";
 
-const { Icon, AppleGlyph, GoogleGlyph, Segmented, Wordmark, IconButton, pressHandlers } = A;
+const { Icon, AppleGlyph, GoogleGlyph, Segmented, Logo, IconButton, pressHandlers } = A;
 
 function SocialButton({ glyph, label, dark, onClick }) {
   return (
@@ -53,7 +53,7 @@ function Auth({ initialMode = "signup", onBack, onAuthed }) {
 
         <div style={{ background: "var(--bg-surface)", borderRadius: "var(--radius-lg)", boxShadow: "var(--shadow-card)", padding: "28px 24px", marginTop: 8 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 22 }}>
-            <Wordmark size={26} />
+            <Logo size={26} />
             <h1 style={{ font: "var(--text-h1)", color: "var(--ink-900)", margin: "8px 0 0" }}>{signup ? "Skapa konto" : "Välkommen tillbaka"}</h1>
             <p style={{ font: "var(--text-body-md)", color: "var(--text-secondary)", margin: 0, textWrap: "pretty" }}>
               {signup ? "Gratis. Börja jämföra priser på under en minut." : "Logga in för att se dina butiker och din lista."}

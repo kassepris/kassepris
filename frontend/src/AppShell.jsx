@@ -143,7 +143,7 @@ function AppShell() {
   const nav = (k) => { if (k === "search") setSearchInit({}); setRoute(k); };
   const goSearch = (opts) => { setSearchInit(opts || {}); setRoute("search"); };
   const finishOnboarding = (fav, c) => { setFavorites(fav); if (c) setCity(c); setOnboarded(true); setRoute("home"); };
-  const addToList = (id) => requireAuth(() => setList((l) => l.some((i) => i.productId === id) ? l : [...l, { productId: id, checked: false }]));
+  const addToList = (id, snap) => requireAuth(() => setList((l) => l.some((i) => i.productId === id) ? l : [...l, { productId: id, checked: false, storeId: snap && snap.storeId, price: snap && snap.price, unit: snap && snap.unit }]));
   const toggleCheck = (id) => setList((l) => l.map((i) => i.productId === id ? { ...i, checked: !i.checked } : i));
   const removeFromList = (id) => setList((l) => l.filter((i) => i.productId !== id));
   const toggleFav = (id) => setFavorites((f) => f.includes(id) ? f.filter((x) => x !== id) : [...f, id]);
@@ -167,7 +167,7 @@ function AppShell() {
   else if (route === "list") screen = <A.ShoppingList list={list} favorites={favorites} authed={authed} onToggle={toggleCheck} onRemove={removeFromList} onAdd={addToList} onOpen={openProduct} onBrowse={() => goSearch({})} onLogin={goLogin} />;
   else if (route === "smartlist") screen = <A.SmartList onBack={() => setRoute(backTo)} onBrowse={() => goSearch({})} />;
   else if (route === "profile") screen = <A.Profile user={user} authed={authed} city={city} favorites={favorites} onBack={() => setRoute(backTo)} onToggleFav={toggleFav} onManageStores={() => setStoresSheet(true)} onCity={() => setCitySheet(true)} onSmart={goSmart} onLogout={logout} onLogin={goLogin} />;
-  else if (route === "detail" && selected) screen = <A.ProductDetail product={selected} favorites={favorites} onBack={() => setRoute(backTo)} onAdd={(p) => addToList(p.id)} onOpen={openProduct} onManageStores={() => setStoresSheet(true)} city={city} />;
+  else if (route === "detail" && selected) screen = <A.ProductDetail product={selected} favorites={favorites} authed={authed} onBack={() => setRoute(backTo)} onAdd={(p, snap) => addToList(p.id, snap)} onOpen={openProduct} onManageStores={() => setStoresSheet(true)} city={city} />;
   else screen = <A.Home user={user} authed={authed} city={city} favorites={favorites} list={list} onOpenProduct={openProduct} onSearch={goSearch} onManageStores={() => setStoresSheet(true)} onSmart={goSmart} onOpenList={() => setRoute("list")} onLogin={goLogin} />;
 
   function finishOrGuestStart() { setRoute("onboarding"); }

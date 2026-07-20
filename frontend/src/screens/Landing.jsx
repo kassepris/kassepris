@@ -4,7 +4,7 @@ import * as A from "../ui.jsx";
 import * as K from "../data.js";
 import { Button } from "../design-system/components.jsx";
 
-const { Icon, Wordmark, SoonTag, metaOf, SaveChip, pressHandlers } = A;
+const { Icon, Logo, SoonTag, metaOf, SaveChip, pressHandlers } = A;
 
 function HeroCompareCard() {
   const kaffe = K.productById("kaffe");
@@ -75,7 +75,7 @@ function Landing({ onGetStarted, onLogin }) {
       {/* header */}
       <header style={{ position: "sticky", top: 0, zIndex: 8, background: "color-mix(in srgb, var(--bg-page) 88%, transparent)", backdropFilter: "blur(8px)", borderBottom: "1px solid var(--border-default)" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px", height: 66, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
-          <Wordmark size={24} />
+          <Logo size={24} />
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <button onClick={onLogin} style={{ border: "none", background: "none", cursor: "pointer", font: "var(--text-label-md)", color: "var(--text-primary)", padding: "9px 12px" }}>Logga in</button>
             <button onClick={onGetStarted} style={{ cursor: "pointer", background: "var(--green-800)", color: "var(--cream-050)", border: "none", borderRadius: "var(--radius-pill)", padding: "10px 18px", font: "var(--text-label-md)" }}>Kom igång</button>

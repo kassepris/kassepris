@@ -12,6 +12,7 @@ function ListRow({ item, favorites, onToggle, onRemove, onOpen }) {
   const best = K.bestVariant(product, scope.length ? scope : K.availableStoreIds(product));
   const m = best ? metaOf(best.storeId) : A.STORE_META.ica;
   const store = best ? K.storeById(best.storeId) : null;
+  const changed = item.price && best && K.money(item.price) !== best.val;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 12, background: "var(--bg-surface)", borderRadius: "var(--radius-md)", boxShadow: "var(--shadow-card)", padding: 10, opacity: item.checked ? 0.55 : 1, transition: "opacity var(--duration-fast) var(--ease-standard)" }}>
       <button onClick={() => onToggle(item.productId)} aria-label="Bocka av" style={{ width: 26, height: 26, flexShrink: 0, borderRadius: "50%", cursor: "pointer", display: "inline-flex", alignItems: "center", justifyContent: "center", background: item.checked ? "var(--green-800)" : "transparent", border: item.checked ? "none" : "1.5px solid var(--border-strong)" }}>
@@ -22,6 +23,7 @@ function ListRow({ item, favorites, onToggle, onRemove, onOpen }) {
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ font: "var(--text-body-md)", fontWeight: 500, color: "var(--ink-900)", textDecoration: item.checked ? "line-through" : "none", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{product.name}</div>
           {store ? <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 3 }}><span style={{ background: m.bg, color: m.color, font: "var(--text-label-sm)", padding: "2px 8px", borderRadius: "var(--radius-pill)" }}>{m.label} {store.short}</span></div> : null}
+          {changed ? <div style={{ font: "var(--text-label-sm)", color: "var(--text-secondary)", marginTop: 3 }}>Tillagd för {item.price} kr</div> : null}
         </div>
       </button>
       <div style={{ textAlign: "right", flexShrink: 0 }}>
@@ -108,7 +110,7 @@ function ShoppingList({ list, favorites, authed, onToggle, onRemove, onAdd, onOp
           {addable.map((p) => {
             const b = K.bestVariant(p, favorites.filter((id) => K.availableStoreIds(p).includes(id)));
             return (
-              <button key={p.id} onClick={() => { onAdd(p.id); setAddOpen(false); setQ(""); }} style={{ display: "flex", alignItems: "center", gap: 12, background: "var(--bg-surface)", border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", padding: 10, cursor: "pointer", textAlign: "left" }}>
+              <button key={p.id} onClick={() => { onAdd(p.id, b ? { storeId: b.storeId, price: b.variant.price, unit: b.variant.unit } : null); setAddOpen(false); setQ(""); }} style={{ display: "flex", alignItems: "center", gap: 12, background: "var(--bg-surface)", border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", padding: 10, cursor: "pointer", textAlign: "left" }}>
                 <div style={{ width: 44, height: 44, flexShrink: 0 }}><A.ImageTile product={p} full radius="var(--radius-sm)" /></div>
                 <span style={{ flex: 1, font: "var(--text-body-md)", color: "var(--ink-900)" }}>{p.name}</span>
                 <span style={{ font: "var(--text-display-sm)", color: "var(--green-800)" }}>{b ? b.variant.price : "–"}</span>

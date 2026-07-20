@@ -4,7 +4,7 @@ import * as A from "../ui.jsx";
 import * as K from "../data.js";
 import { Button, Input } from "../design-system/components.jsx";
 
-const { Icon, StepDots, Wordmark, metaOf, pressHandlers } = A;
+const { Icon, StepDots, Logo, metaOf, pressHandlers } = A;
 
 function LocationStep({ onNext }) {
   const [phase, setPhase] = React.useState("idle");
@@ -130,7 +130,7 @@ function Onboarding({ onDone, initialFavorites }) {
       <div style={{ width: "100%", maxWidth: 560, display: "flex", flexDirection: "column", flex: 1 }}>
         {/* top bar */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 22 }}>
-          {step === 1 ? <A.IconButton name="left" onClick={() => setStep(0)} ariaLabel="Tillbaka" surface /> : <Wordmark size={22} />}
+          {step === 1 ? <A.IconButton name="left" onClick={() => setStep(0)} ariaLabel="Tillbaka" surface /> : <Logo size={22} />}
           <StepDots count={2} active={step} />
           <span style={{ width: 40 }} />
         </div>
