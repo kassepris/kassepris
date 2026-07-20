@@ -24,6 +24,7 @@ export function Icon({ name, size = 20, color = "currentColor", sw = 2, style })
     case "instagram": return svg(<g {...p}><rect x="4" y="4" width="16" height="16" rx="4.6" /><circle cx="12" cy="12" r="3.6" /><circle cx="16.6" cy="7.4" r="1" fill={color} stroke="none" /></g>);
     case "facebook": return svg(<path fill={color} stroke="none" d="M13.4 21v-7h2.3l.4-2.9h-2.7V9.2c0-.85.24-1.43 1.46-1.43H16.2V5.16c-.27-.03-1.2-.11-2.28-.11-2.26 0-3.8 1.38-3.8 3.9v2.18H7.8V14h2.32v7z" />);
     case "tiktok": return svg(<path fill={color} stroke="none" d="M14.2 3.5c.3 1.6 1.3 3 3.3 3.3v2.4c-1.1 0-2.2-.34-3.1-.94v5.9c0 2.7-2.1 4.84-4.8 4.84S4.8 16.9 4.8 14.2s2.2-4.84 4.9-4.72v2.45c-1.4-.1-2.55 1-2.55 2.37 0 1.35 1.05 2.44 2.4 2.44 1.36 0 2.45-1.05 2.45-2.5V3.5z" />);
+    case "linkedin": return svg(<g {...p}><rect x="4" y="4" width="16" height="16" rx="3" /><circle cx="8" cy="8.2" r="0.9" fill={color} stroke="none" /><path d="M8 11v6" /><path d="M11.3 17v-3.5c0-1.4.9-2.2 2-2.2s1.9.8 1.9 2.2V17" /></g>);
     default: return svg(<circle {...p} cx="12" cy="12" r="8" />);
   }
 }

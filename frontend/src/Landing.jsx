@@ -36,9 +36,10 @@ function Footer() {
           </p>
         </div>
         <div style={{ display: "flex", gap: 10 }}>
-          {soc("instagram", "https://instagram.com", "Instagram")}
-          {soc("facebook", "https://facebook.com", "Facebook")}
-          {soc("tiktok", "https://tiktok.com", "TikTok")}
+          {soc("instagram", "https://www.instagram.com/kassepris/", "Instagram")}
+          {soc("facebook", "https://www.facebook.com/people/Kassepris/61591959780845/", "Facebook")}
+          {soc("tiktok", "https://www.tiktok.com/@kassepris", "TikTok")}
+          {soc("linkedin", "https://www.linkedin.com/company/kassepris/", "LinkedIn")}
         </div>
       </div>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "18px 24px 26px", borderTop: "1px solid color-mix(in srgb, var(--cream-100) 18%, transparent)", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
