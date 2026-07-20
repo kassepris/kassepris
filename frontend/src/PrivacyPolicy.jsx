@@ -35,15 +35,27 @@ export default function PrivacyPolicy() {
 
         <Section title="Vilka uppgifter vi samlar in">
           <p>I det här skedet samlar Kassepris enbart in den e-postadress du själv anger när du går med i väntelistan. Vi samlar inte in namn, adress eller betalningsuppgifter.</p>
+          <p>När du anmäler dig sparar vi din e-postadress, en tidsstämpel för anmälan samt om du har bekräftat din plats (se nästa avsnitt). Våra underleverantörer kan även logga tekniska uppgifter som IP-adress i samband med att e-post skickas och tas emot, i den utsträckning det krävs för att leverera och skydda tjänsten.</p>
+        </Section>
+
+        <Section title="Bekräftelse av din anmälan (double opt-in)">
+          <p>För att bekräfta att det är du som äger e-postadressen skickar vi ett bekräftelsemejl med en unik länk. Du är inte med på väntelistan förrän du klickar på länken.</p>
         </Section>
 
         <Section title="Hur vi använder din e-postadress">
-          <p>Din e-postadress används uteslutande för att skicka information om lanseringen av Kassepris, inklusive eventuell tidig tillgång eller erbjudanden kopplade till väntelistan (till exempel en gratis månad för de första 100 som går med).</p>
+          <p>Din e-postadress används uteslutande för att skicka information om lanseringen av Kassepris, inklusive bekräftelsemejlet, eventuell tidig tillgång eller erbjudanden kopplade till väntelistan (till exempel en gratis månad för de första 100 som går med).</p>
           <p>Vi säljer, hyr ut eller delar aldrig din e-postadress med tredje part i marknadsföringssyfte.</p>
         </Section>
 
+        <Section title="Underleverantörer">
+          <p>Vi använder ett fåtal noga utvalda underleverantörer för att driva väntelistan:</p>
+          <p><strong>Supabase</strong> lagrar din e-postadress och tillhörande anmälningsdata i vår databas.</p>
+          <p><strong>Resend</strong> skickar bekräftelsemejlet och annan e-post från oss till dig.</p>
+          <p>Dessa leverantörer behandlar uppgifterna för vår räkning och får endast använda dem för att leverera tjänsten till oss, inte för egna ändamål. Vår databas hos Supabase är placerad inom EU. Om en underleverantör skulle behandla uppgifter utanför EU/EES säkerställer vi att det sker med lämpliga skyddsåtgärder, till exempel EU-kommissionens standardavtalsklausuler.</p>
+        </Section>
+
         <Section title="Hur länge vi sparar dina uppgifter">
-          <p>Vi sparar din e-postadress fram tills du avregistrerar dig eller Kassepris lanseras och du väljer att skapa ett konto, då dina uppgifter hanteras enligt villkoren för själva tjänsten.</p>
+          <p>Om du inte bekräftar din anmälan raderas den obekräftade posten löpande. Bekräftade e-postadresser sparar vi fram tills du avregistrerar dig eller Kassepris lanseras och du väljer att skapa ett konto, då dina uppgifter hanteras enligt villkoren för själva tjänsten.</p>
         </Section>
 
         <Section title="Dina rättigheter">
