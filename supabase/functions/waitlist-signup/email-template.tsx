@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Body, Button, Container, Head, Heading, Hr, Html, Preview, Text } from "@react-email/components";
+import { Body, Button, Container, Head, Heading, Hr, Html, Img, Preview, Text } from "@react-email/components";
 
 const colors = {
   green900: "#142B22",
@@ -10,6 +10,8 @@ const colors = {
   border: "#EAE3D6",
 };
 
+const LOGO_URL = "https://kassepris.se/brand/icons/icon-144-on-light.png";
+
 export function WaitlistVerificationEmail({ verifyLink }: { verifyLink: string }) {
   return (
     <Html lang="sv">
@@ -17,11 +19,16 @@ export function WaitlistVerificationEmail({ verifyLink }: { verifyLink: string }
       <Preview>Bekräfta din plats på Kassepris väntelista</Preview>
       <Body style={{ backgroundColor: colors.cream050, fontFamily: "Arial, Helvetica, sans-serif", margin: 0, padding: "40px 0" }}>
         <Container style={{ backgroundColor: "#ffffff", borderRadius: 12, padding: "40px 32px", maxWidth: 480, margin: "0 auto" }}>
-          <Heading style={{ color: colors.green800, fontSize: 22, fontWeight: 700, margin: "0 0 16px" }}>
-            Kassepris
+          <Img src={LOGO_URL} width={48} height={48} alt="Kassepris" style={{ margin: "0 0 20px" }} />
+          <Heading style={{ color: colors.green800, fontSize: 24, fontWeight: 700, margin: "0 0 12px" }}>
+            Välkommen till väntelistan!
           </Heading>
+          <Text style={{ color: colors.green900, fontSize: 16, lineHeight: "24px", margin: "0 0 8px" }}>
+            Hej!
+          </Text>
           <Text style={{ color: colors.green900, fontSize: 16, lineHeight: "24px", margin: "0 0 24px" }}>
-            Hej! Klicka på knappen nedan för att bekräfta din e-postadress och ta din plats på väntelistan.
+            Vi är glada att du vill vara med och hitta de bästa priserna i din vardag. Bekräfta din
+            e-postadress nedan så säkrar du din plats på Kassepris väntelista.
           </Text>
           <Button
             href={verifyLink}
