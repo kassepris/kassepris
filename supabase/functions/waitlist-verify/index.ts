@@ -9,7 +9,7 @@ const supabase = createClient(
 );
 
 function redirect(status: "verified" | "invalid" | "already_verified") {
-  return Response.redirect(`${FRONTEND_URL}/?waitlist=${status}`, 302);
+  return Response.redirect(`${FRONTEND_URL}/#/valkommen?status=${status}`, 302);
 }
 
 Deno.serve(async (req) => {
