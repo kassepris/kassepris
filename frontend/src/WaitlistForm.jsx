@@ -23,6 +23,46 @@ function statusFromUrl() {
   return status;
 }
 
+function ConfirmationCard({ heading, message }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 12,
+        width: "100%",
+        maxWidth: 480,
+        padding: "var(--space-8) var(--space-6)",
+        background: "#ffffff",
+        border: "1px solid color-mix(in srgb, var(--green-800) 18%, transparent)",
+        borderRadius: "var(--radius-lg)",
+        boxShadow: "var(--shadow-card)",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          width: 48,
+          height: 48,
+          borderRadius: "50%",
+          background: "var(--green-800)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        <Icon name="check" size={24} color="var(--cream-050)" />
+      </div>
+      <div>
+        <p style={{ font: "var(--text-h3)", color: "var(--green-800)", margin: "0 0 4px" }}>{heading}</p>
+        <p style={{ font: "var(--text-body-sm)", color: "var(--text-secondary)", margin: 0 }}>{message}</p>
+      </div>
+    </div>
+  );
+}
+
 export function WaitlistForm({ size = "lg", showTerms = true }) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState("idle"); // idle | submitting | pending | error
@@ -63,6 +103,12 @@ export function WaitlistForm({ size = "lg", showTerms = true }) {
         return;
       }
 
+      if (data.status === "already_verified") {
+        setVerifiedStatus("already_verified");
+        setState("idle");
+        return;
+      }
+
       setState("pending");
       setCooldown(RESEND_COOLDOWN_SECONDS);
     } catch {
@@ -71,17 +117,27 @@ export function WaitlistForm({ size = "lg", showTerms = true }) {
     }
   }
 
-  if (verifiedStatus === "verified" || verifiedStatus === "already_verified") {
+  if (verifiedStatus === "verified") {
     return (
-      <div style={{ display: "inline-flex", alignItems: "center", gap: 10, font: "var(--text-body-md)", color: "var(--green-800)" }}>
-        <Icon name="check" size={20} color="var(--green-800)" /> Du är bekräftad och står nu på listan!
-      </div>
+      <ConfirmationCard
+        heading="Bekräftad!"
+        message="Din e-postadress är verifierad och din plats på väntelistan är säkrad. Vi hör av oss så snart Kassepris är redo."
+      />
+    );
+  }
+
+  if (verifiedStatus === "already_verified") {
+    return (
+      <ConfirmationCard
+        heading="Du står redan på listan"
+        message="Den här adressen är redan bekräftad. Vi hör av oss så snart Kassepris är redo."
+      />
     );
   }
 
   if (state === "pending") {
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, width: "100%", maxWidth: 420 }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, width: "100%", maxWidth: 480 }}>
         <div style={{ display: "inline-flex", alignItems: "center", gap: 10, font: "var(--text-body-md)", color: "var(--green-800)", textAlign: "center" }}>
           <Icon name="mail" size={20} color="var(--green-800)" /> Kolla din inkorg för att bekräfta din plats.
         </div>
@@ -105,7 +161,7 @@ export function WaitlistForm({ size = "lg", showTerms = true }) {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, width: "100%", maxWidth: 420 }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, width: "100%", maxWidth: 480 }}>
       {verifiedStatus === "invalid" ? (
         <p style={{ font: "var(--text-body-sm)", color: "var(--red-700, #b91c1c)", margin: 0, textAlign: "center" }}>
           Länken är inte längre giltig. Ange din e-post igen nedan.

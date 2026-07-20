@@ -46,7 +46,7 @@ export function Input({ type = "text", placeholder = "", value, onChange, icon =
   const pad = size === "lg" ? "13px 16px" : "10px 14px";
   return (
     <div className="kp-input" style={{ display: "flex", alignItems: "center", gap: "8px", background: "var(--bg-surface)", border: "1px solid var(--border-default)", borderRadius: "var(--radius-md)", padding: pad }}>
-      {icon}
+      {icon ? <span style={{ display: "inline-flex", flexShrink: 0 }}>{icon}</span> : null}
       <input
         type={type}
         placeholder={placeholder}

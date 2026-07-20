@@ -38,7 +38,7 @@
 
 @media (min-width: 480px) {
   .kp-waitlist-form { flex-direction: row; align-items: stretch; }
-  .kp-waitlist-form .kp-input { flex: 1 1 auto; min-width: 0; width: auto; }
+  .kp-waitlist-form .kp-input { flex: 1 1 auto; min-width: 220px; width: auto; }
   .kp-waitlist-form button { width: auto; flex-shrink: 0; }
 }
 
